@@ -1,0 +1,22 @@
+{
+  "name": "algos",
+  "version": "1.0.0",
+  "description": "alogos",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/git+amar-jay/algos.git"
+  },
+  "keywords": [
+    "algos"
+  ],
+  "author": "amar-jay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/git+amar-jay/algos/issues"
+  },
+  "homepage": "https://github.com/git+amar-jay/algos#readme"
+}
