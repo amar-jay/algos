@@ -24,6 +24,6 @@
     "resolveJsonModule": true,
     "baseUrl": "."
   },
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "./src/decomp"],
   "include": ["./src/**/*.ts"]
 }
