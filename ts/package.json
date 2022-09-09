@@ -1,0 +1,30 @@
+{
+  "name": "algos",
+  "version": "1.0.0",
+  "description": "algos",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "yarn mocha test/**/*.js",
+    "test:dev": "nodemon -x ./node_modules/.bin/mocha test/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/git+amar-jay/algos.git"
+  },
+  "keywords": [
+    "algos"
+  ],
+  "author": "amar-jay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/git+amar-jay/algos/issues"
+  },
+  "homepage": "https://github.com/git+amar-jay/algos#readme",
+  "devDependencies": {
+    "chai": "^4.3.6"
+  },
+  "dependencies": {
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.19"
+  }
+}
