@@ -12,16 +12,17 @@
 fn divisors(n: i32) -> i32 {
     let rt = (n as f32).sqrt() as i32;
     let mut vals = vec![];
-    for i in 1..(n){
+    for i in 1..(n+1){
+        if vals.contains(&i) {
+            continue;
+        }
 
         if n%i == 0 {
             vals.push(i);
         }
-        if i != n / i {
-            vals.push(n / i);
-        }
-    }
+   }
 
+    println!("{:#?}", vals);
     vals.len() as i32
 }
 
