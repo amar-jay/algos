@@ -4,3 +4,4 @@ mod d0001_dna_to_rna_conversion;
 mod d0002_set_alarm;
 mod d0003_removing_elements;
 mod d0004_sort_and_star;
+mod d0005_count_divisions;
