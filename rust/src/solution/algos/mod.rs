@@ -8,3 +8,12 @@ mod d0005_count_divisions;
 #[allow(non_snake_case)]
 mod d0006_match_PIN;
 mod d0007_consecutive_strings;
+mod d0008_subtract_arrays;
+mod d0009_replace_with_alphabet_position;
+mod d0010_morse_code_1;
+mod d0011_direction_reduction;
+mod d0012_backspaces_in_strings;
+mod d0013_sort_odds;
+
+pub fn run() {
+}
