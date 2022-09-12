@@ -42,7 +42,8 @@ fn comp(a: Vec<i64>, b: Vec<i64>) -> bool {
     // your code
 }
 
-fn testing(a: Vec<i64>, b: Vec<i64>, exp: bool) -> () {
+#[allow(unused)]
+fn testing(a: Vec<i64>, b: Vec<i64>, exp: bool) {
     assert_eq!(comp(a, b), exp)
 }
 
