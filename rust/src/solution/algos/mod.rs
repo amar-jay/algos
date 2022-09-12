@@ -14,6 +14,8 @@ mod d0010_morse_code_1;
 mod d0011_direction_reduction;
 mod d0012_backspaces_in_strings;
 mod d0013_sort_odds;
+mod d0014_are_they_same;
+mod d0015_string_incremention;
 
 pub fn run() {
 }

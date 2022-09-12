@@ -145,9 +145,9 @@ mod tests {
     }
     
     fn can_be_reduced(elem: Direction, last: Direction) -> bool {
-        match (elem, last) {
-            (North, South) | (South, North) | (West, East) | (East, West) => true,
-            _ => false,
-        }
+        matches!((elem, last), (North, South) | 
+        (South, North) | 
+        (West, East) | 
+        (East, West))
     }
 }
