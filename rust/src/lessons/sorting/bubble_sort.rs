@@ -1,23 +1,14 @@
 #[allow(unused)]
 pub fn bubble_sort<T: Ord>(arr: &mut [T]) {
-    //check if array is empty
-    if arr.is_empty() {
-        return;
-    }
-
-    let mut sorted = false;
-    let mut n = arr.len(); // size of array
-
-    // loop until sorted
-    while !sorted {
-        sorted = true;
-        for i in 0..n - 1 {
-            if arr[i] > arr[i + 1] {
-                arr.swap(i, i + 1);
-                sorted = false;
-            }
+    //Traverse through arr with idx, i
+    // Traverse through arr-i-1 with idx,j
+    // swap elem if curr greater than prev
+    for i in 0..arr.len() {
+        for j in 0..arr.len() - i - 1 {
+            if arr[j] > arr[j + 1] {
+                arr.swap(j, j + 1);
+            } 
         }
-        n -= 1;
     }
 }
 
@@ -29,18 +20,45 @@ mod tests {
     #[test]
     fn descending() {
         //descending
+        let mut alp = vec!['d', 'c', 'b', 'a'];
         let mut ve1 = vec![6, 5, 4, 3, 2, 1];
         bubble_sort(&mut ve1);
+        bubble_sort(&mut alp);
         assert!(is_sorted(&ve1));
+        assert!(is_sorted(&alp));
     }
 
     #[test]
     fn ascending() {
         //pre-sorted
+        let mut alp = vec!['a', 'b', 'c', 'd'];
         let mut ve2 = vec![1, 2, 3, 4, 5, 6];
         bubble_sort(&mut ve2);
+        bubble_sort(&mut alp);
         assert!(is_sorted(&ve2));
+        assert!(is_sorted(&alp));
     }
+
+    #[test]
+    fn one_element() {
+        let mut alp = ['a'];
+        let mut arr = [9];
+        bubble_sort(&mut arr);
+        bubble_sort(&mut alp);
+        assert!(is_sorted(&arr));
+        assert!(is_sorted(&alp));
+    }
+
+    #[test]
+    fn similar_vals() {
+        let mut alp = ['a', 'a', 'a', 'y'];
+        let mut ve2 = vec![0, 0 , 0, 0, 1];
+        bubble_sort(&mut ve2);
+        bubble_sort(&mut alp);
+        assert!(is_sorted(&ve2));
+        assert!(is_sorted(&alp));
+    }
+
 
     #[test]
     fn random() {
@@ -55,4 +73,5 @@ mod tests {
         bubble_sort(&mut ve3);
         assert!(is_sorted(&ve3));
     }
+
 }
