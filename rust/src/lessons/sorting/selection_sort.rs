@@ -1,8 +1,21 @@
-
 #[allow(unused)]
+/**
+  ## Steps
+  -  Tranverse through arr 
+  -  find index of min val in array
+  -  swap min val with curr val 
+*/
 fn selection_sort<T>(arr: &mut [T])
 where T: PartialOrd {
-
+    for i in 0..arr.len() {
+        let mut min_idx = i;
+        for i in i..arr.len() {
+            if arr[min_idx] > arr[i] {
+                min_idx = i;
+            }
+        }
+        arr.swap(min_idx, i)
+    }
 }
 
 #[cfg(test)]

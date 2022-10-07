@@ -1,5 +1,9 @@
 package main
 
+import (
+	"amar-jay/algos/go/solution"
+
+)
 
 func check_keys(str_map , word_map []rune) bool {
    for key := range str_map {
@@ -27,15 +31,5 @@ func Anagrams(word string, words []string) []string {
 }
 
 func main(){
-  
-    x:= Anagrams("abba", []string{"aabb", "abcd", "bbaa", "dada"})
-    y := []string{"aabb", "bbaa"}
-  println("main")
-  for _,a := range x {
-  println("main")
-    for _,b := range y {
-  println("main %")
-      print("hello %s %s", a,b)
-  }
-  }
+  solution.Run();
 }

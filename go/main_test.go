@@ -1,28 +1,26 @@
 package main
+
 import (
-  "testing"
-  )
+	"amar-jay/algos/go/solution"
+	"testing"
+)
 
-
-func checkAnagram(str string, list []string, ans []string) bool {
-  if ans == nil || list == nil {
-    return false
-  }
-
-  anagrams := Anagrams(str, list)
-  for _,x := range anagrams {
-    for _, a := range ans {
-      if x != a {
-        return false
-      }
-    } 
-  }
-    return true
+func TestBanana(t *testing.T) {
+  //a := solution.NewPalindromeTest(t)
 }
 
-func TestingAnagram(t *testing.T){
-     checkAnagram("abba", []string{"aabb", "abcd", "bbaa", "dada"}, []string{"aabb", "bbaa"})
-     checkAnagram("laser", []string{"lazing", "lazy",  "lacer"}, nil)
+func testMango(t *testing.T) {
 
+  //a := solution.NewPalindromeTest(t)
+  t.Fatalf(`Error in palindrome`)
 }
 
+func testOrange(t *testing.T) {
+  //a := solution.NewPalindromeTest(t)
+  t.Fatalf(`Error in palindrome`)
+}
+
+func TestSolutions(t *testing.T) {
+  println("testing solution")
+  solution.PalindromeTests(t);
+}
