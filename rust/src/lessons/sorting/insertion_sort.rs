@@ -1,12 +1,12 @@
 use std::cmp;
 #[allow(unused)]
 /**
-*   ## Steps
-*   -  Traverse arr from 2nd val
-*   -  store curr val and j as prev index
-*   -  loop as long as j != 0 or prev val > curr val 
-*   -  move it val by 1 index and decrease j by 1
-*   -  curr val now idx ==0 by curr
+## Steps
+-  Traverse arr from 2nd val
+-  store curr val and j as prev index
+-  loop as long as j != 0 or prev val > curr val 
+-  move it val by 1 index and decrease j by 1
+-  curr val now idx == 0 by curr
 */
 pub fn insertion_sort<T>(arr: &mut [T])
 where 
