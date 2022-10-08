@@ -17,8 +17,16 @@ mod d0013_sort_odds;
 mod d0014_are_they_same;
 mod d0015_string_incremention;
 mod d0016_sum_of_perfect_strings;
-mod d0017_best_travel;
+mod d0017_moving_zeros_to_end;
+//mod d0018_best_travel;
+#[allow(non_snake_case)]
+mod d0019_count_IP_address;
+mod d0020_sum_consecutives;
+mod d0021_sodoku_validator;
+
 
 pub fn run() {
-    d0017_best_travel::run();
+    // for debugging
+    //d0018_best_travel::run();
+    d0017_moving_zeros_to_end::run();
 }
