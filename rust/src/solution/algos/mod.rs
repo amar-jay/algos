@@ -23,6 +23,7 @@ mod d0017_moving_zeros_to_end;
 mod d0019_count_IP_address;
 mod d0020_sum_consecutives;
 mod d0021_sodoku_validator;
+mod d0022_valid_parentheses;
 
 
 pub fn run() {
