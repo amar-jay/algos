@@ -25,6 +25,9 @@ mod d0020_sum_consecutives;
 mod d0021_sodoku_validator;
 mod d0022_valid_parentheses;
 mod d0023_human_readable_date_format;
+#[allow(non_snake_case)]
+mod d0024_how_many_numbers_III;
+mod d0025_evaluate_math_expr;
 
 
 pub fn run() {
