@@ -6,6 +6,7 @@ their digits are in increasing order (the numbers may have two or more equal con
 The numbers that fulfill these constraints are: [118, 127, 136, 145, 226, 235, 244, 334]. 
 There're 8 numbers in total with 118 being the lowest and 334 being the greatest.
 */
+#[allow(dead_code)]
 fn dig(d: u8, start:u64) -> Vec<Vec<u64>> 
 {
 
@@ -27,6 +28,7 @@ fn dig(d: u8, start:u64) -> Vec<Vec<u64>>
         return ans; 
     }
 }
+#[allow(dead_code)]
 fn find_all(sum_dig: u8, digs: u8) -> Option<(usize, u64, u64)> {
     let mut xs = vec![];
   for x in dig(digs, 1) {

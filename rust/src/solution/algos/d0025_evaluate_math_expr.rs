@@ -1,5 +1,3 @@
-use std::{num::ParseFloatError, string::ParseError, char::ParseCharError};
-
 /**
 # Instructions
 
@@ -56,55 +54,44 @@ NOTE: std::process::Command is disallowed in your solution.
 */
 ///#[allow(unused)]
 fn calc(expr: &str) -> f64 {
-    let expr = expr.chars();
-    
-    enum Operations {
+
+    let mut expr = expr.chars();
+    let mut acc = 0.0;
+
+    #[derive(PartialEq)]
+    enum Operation {
         Addition,
         Subtraction,
         Multiplication,
         Division,
-        Error(Option<ParseFloatError>),
-        Ok
+        None
     }
-    // looping through the expr 
-    
-    let mut err = Operations::Ok;
-    let sum = expr.fold(0_f64, |a, b| { 
 
-        match b {
-            ' ' => return a,
-            '+' => {
-                return a + b.to_string().parse().unwrap_or_else(|x| {
-                    err = Operations::Error(Some(x)); 
-                    0_f64
-                });
-            },
-            '-' => {
-                return a - b.to_string().parse().unwrap_or_else(|x| {
-                    err = Operations::Error(Some(x)); 
-                    0_f64
-                });
-            },
-            '*' => {
-                return a * b.to_string().parse().unwrap_or_else(|x| {
-                  err = Operations::Error(Some(x)); 
-                  0_f64
-                });
-            },
-            '/' => {
-                 return a / b.to_string().parse().unwrap_or_else(|x| {
-                    err = Operations::Error(Some(x)); 
-                  0_f64
-                });
-            },
-            _ => {
-                err = Operations::Error(None);
-                0_f64
-            }
-                
-        }
-    });
-       sum 
+impl Operation {
+
+}
+
+    let mut op = Operation::None;
+    while let Some(ex) = expr.next() {
+        match ex.to_string().parse::<f64>(){
+            Ok(e) => acc = acc*10.0 + e,
+            Err(_) => {
+                op = match ex {
+                    '+' => Operation::Addition,
+                    '-' => {
+                        if op == Operation::Subtraction { 
+                            Operation::Addition 
+                        } else {
+                        Operation::Subtraction
+                        }
+                    },
+                    '*' => Operation::Multiplication,
+                    '/' => Operation::Division,
+                    _ => Operation::None,
+                };}
+        };
+    }
+    acc
 }
 
 #[cfg(test)]

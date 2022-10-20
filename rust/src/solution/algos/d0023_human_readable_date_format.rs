@@ -4,6 +4,7 @@ use chrono::NaiveDateTime;
 Convert Date from seconds to "%d hours %d minutes %d seconds"
 *
 */
+#[allow(dead_code)]
 fn aliter(seconds: u64) -> String {
     let date:NaiveDateTime = NaiveDateTime::from_timestamp(seconds as i64, 0);
     let mut ans = vec![]; 
