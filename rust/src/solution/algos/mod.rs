@@ -1,4 +1,9 @@
 mod s0001_two_sum;
+mod s0001_integer_to_roman;
+mod s0003_three_sums;
+mod s0004_add_two_numbers;
+
+
 mod s0003_longest_substring_without_repeating_chars; 
 mod d0001_dna_to_rna_conversion;
 mod d0002_set_alarm;
@@ -27,8 +32,7 @@ mod d0022_valid_parentheses;
 mod d0023_human_readable_date_format;
 #[allow(non_snake_case)]
 mod d0024_how_many_numbers_III;
-mod d0025_evaluate_math_expr;
-
+//mod d0025_evaluate_math_expr;
 
 pub fn run() {
     // for debugging

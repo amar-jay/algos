@@ -1,4 +1,6 @@
 mod solution;
+mod problems;
+mod utils;
 //mod lessons;
 
 fn main() {

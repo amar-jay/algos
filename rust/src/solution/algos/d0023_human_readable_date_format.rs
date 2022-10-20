@@ -82,6 +82,7 @@ fn main_solution(seconds: u64) -> String {
     return ans.trim().to_string()
 }
 
+#[allow(dead_code)]
 fn format_duration(seconds: u64) -> String {
     aliter(seconds)
 }
