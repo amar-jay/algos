@@ -6,6 +6,7 @@
  * The function accepts INTEGER_ARRAY a as parameter.
  */
 
+#[allow(unused)]
 fn reverse_array(a: &[i32]) -> Vec<i32> {
 
     let mut a = a.to_vec();
@@ -18,6 +19,7 @@ fn reverse_array(a: &[i32]) -> Vec<i32> {
 * Result: [i32, i32]
 * Solution: A point is rewarded to either side if greater.
 */
+#[allow(unused)]
 fn compare_triplets(a: &[i32], b: &[i32]) -> Vec<i32> {
     let mut ans = vec![0;2];
     
@@ -33,6 +35,7 @@ fn compare_triplets(a: &[i32], b: &[i32]) -> Vec<i32> {
 }
 
 
+#[allow(unused)]
 pub fn run() {
     println!("Data Structure: Arrays");
     println!("reverseArray: {:#?}", reverse_array(&[1,2,4,8,6]));

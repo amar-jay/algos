@@ -1,5 +1,5 @@
 
-/*
+/**
  * Complete the 'hourglassSum' function below.
  *
  * The function is expected to return an INTEGER.
@@ -35,6 +35,7 @@ fn diagonal_difference(arr: &[Vec<i32>]) -> i32 {
 
 
 
+#[allow(unused)]
 pub fn run() {
    println!("Data Structure: 2D Arrays");
     println!("hourglassSum: {:#}", hourglasssum(&[

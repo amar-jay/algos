@@ -9,13 +9,15 @@ pub struct ListNode
 
 //impl <T>std::cmp::PartialEq for ListNode<T> {}
 impl ListNode {
+    #[allow(unused)]
     pub fn new(val:i32) -> ListNode {
         ListNode { curr: val, next: None}
     }
     
 }
 
-/// Function to convert Vector to ListNode
+/// Convert Vector to ListNode
+#[allow(unused)]
 pub fn to_list(vec: &Vec<i32>) -> Option<Box<ListNode>> {
 
     let mut prev = None;
