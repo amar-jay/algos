@@ -1,16 +1,17 @@
-//! # Trait Queue
-//! ## Resources
-//! -[Link to Article](https://opendatastructures.org/versions/edition-0.1c/ods-java/node5.html)
-
+/**
+*  # Trait Queue
+*  ## Resources
+* ! -[Link to Article](https://opendatastructures.org/versions/edition-0.1c/ods-java/node5.html)
+*/
 ///trait for a Queue data structure
-/// last-in first-out data structure
+/// first-in first-out data structure
 pub trait Queue<T> {
     fn add(&mut self, x:T);
     fn remove(&mut self) -> Option<T>;
 }
 
 ///trait for a Stack data structure
-/// first-in first-out data structure
+/// last-in first-out data structure
 pub trait Stack<T> {
     fn push(&mut self, x:T);
     fn pop(&mut self) -> Option<T>;
@@ -33,7 +34,7 @@ pub trait USet<T: PartialEq> {
     fn find(&self, x: &T) -> Option<T>;
 } 
 
-///trait for a Unordered Set data structure
+///trait for a Sorted Set data structure
 pub trait SSet<T: PartialEq + PartialOrd> {
     fn size(&self) -> usize;
     fn add(&self) -> bool;
