@@ -1,11 +1,29 @@
 #[allow(unused)]
 /**
+* # Quick Sort
+* It is a sorting algorithm that uses divide and conquer approach.
 * ## Steps
 *   - 
 *   -
 *   -
 */
-pub fn quick_sort<T: Ord>(arr: &mut [T]) {
+pub fn quick_sort<T>(arr: &mut Vec<T>) -> &mut Vec<T> 
+where T: Ord + Copy + Clone {
+    let len = arr.len();
+
+    if len <= 1 {
+        return &mut Vec::new();
+    }
+
+    let pivot = *arr.first().unwrap();
+    let mut greater_than_pivot = arr.to_vec().into_iter().filter(|&x| x > pivot).collect::<Vec<T>>();
+    let mut less_than_pivot = arr.to_vec().into_iter().filter(|&x| x < pivot).collect::<Vec<T>>();
+    let mut sorted = vec![];
+    sorted.append(quick_sort(&mut greater_than_pivot));
+    sorted.push(pivot);
+    sorted.append(quick_sort(&mut less_than_pivot));
+
+    return &mut sorted;
 }
 
 #[cfg(test)]
@@ -37,8 +55,8 @@ mod tests {
 
     #[test]
     fn one_element() {
-        let mut alp = ['a'];
-        let mut arr = [9];
+        let mut alp = vec!['a'];
+        let mut arr = vec![9];
         quick_sort(&mut arr);
         quick_sort(&mut alp);
         assert!(is_sorted(&arr));
@@ -47,7 +65,7 @@ mod tests {
 
     #[test]
     fn similar_vals() {
-        let mut alp = ['a', 'a', 'a', 'y'];
+        let mut alp = vec!['a', 'a', 'a', 'y'];
         let mut ve2 = vec![0, 0 , 0, 0, 1];
         quick_sort(&mut ve2);
         quick_sort(&mut alp);

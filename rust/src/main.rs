@@ -1,10 +1,10 @@
-mod solution;
-mod problems;
+//mod solution;
+//mod problems;
 mod utils;
-//mod lessons;
+mod lessons;
 
 fn main() {
     println!("Running algos...");
-       solution::run();
-    //lessons::run();
+       //solution::run();
+    lessons::run();
 }
