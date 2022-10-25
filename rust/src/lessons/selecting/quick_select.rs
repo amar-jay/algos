@@ -30,7 +30,6 @@
  * @flow
  */
 #[allow(unused)]
-use rand::prelude::*;
 pub fn quick_select<T>(arr: &[T], k: usize) -> T 
 where T:Ord + Copy  {
     arr[0]

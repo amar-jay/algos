@@ -1,29 +1,29 @@
 #[allow(unused)]
 /**
 * # Quick Sort
+* Quick sort is a comparison sorting algorithm that uses a divide and conquer strategy.
 * It is a sorting algorithm that uses divide and conquer approach.
 * ## Steps
 *   - 
 *   -
 *   -
 */
-pub fn quick_sort<T>(arr: &mut Vec<T>) -> &mut Vec<T> 
+fn quick_sort<T: Ord>(arr: &mut Vec<T>) -> Vec<T>
 where T: Ord + Copy + Clone {
     let len = arr.len();
 
     if len <= 1 {
-        return &mut Vec::new();
+        return arr.to_vec();
     }
 
     let pivot = *arr.first().unwrap();
     let mut greater_than_pivot = arr.to_vec().into_iter().filter(|&x| x > pivot).collect::<Vec<T>>();
     let mut less_than_pivot = arr.to_vec().into_iter().filter(|&x| x < pivot).collect::<Vec<T>>();
     let mut sorted = vec![];
-    sorted.append(quick_sort(&mut greater_than_pivot));
+    sorted.append(&mut quick_sort(&mut less_than_pivot));
     sorted.push(pivot);
-    sorted.append(quick_sort(&mut less_than_pivot));
-
-    return &mut sorted;
+    sorted.append(&mut quick_sort(&mut greater_than_pivot));
+    return sorted;
 }
 
 #[cfg(test)]
@@ -36,9 +36,10 @@ mod tests {
         //descending
         let mut alp = vec!['d', 'c', 'b', 'a'];
         let mut ve1 = vec![6, 5, 4, 3, 2, 1];
-        quick_sort(&mut ve1);
-        quick_sort(&mut alp);
-        assert!(is_sorted(&ve1));
+        let ve1 = quick_sort(&mut ve1);
+        let alp = quick_sort(&mut alp);
+        assert_eq!(vec![1, 2, 3, 4, 5, 6], ve1);
+        assert_eq!(vec!['a','b', 'c', 'd'], alp);
         assert!(is_sorted(&alp));
     }
 
@@ -47,8 +48,8 @@ mod tests {
         //pre-sorted
         let mut alp = vec!['a', 'b', 'c', 'd'];
         let mut ve2 = vec![1, 2, 3, 4, 5, 6];
-        quick_sort(&mut ve2);
-        quick_sort(&mut alp);
+        let ve2 = quick_sort(&mut ve2);
+        let alp = quick_sort(&mut alp);
         assert!(is_sorted(&ve2));
         assert!(is_sorted(&alp));
     }
@@ -57,8 +58,8 @@ mod tests {
     fn one_element() {
         let mut alp = vec!['a'];
         let mut arr = vec![9];
-        quick_sort(&mut arr);
-        quick_sort(&mut alp);
+        let arr = quick_sort(&mut arr);
+        let alp = quick_sort(&mut alp);
         assert!(is_sorted(&arr));
         assert!(is_sorted(&alp));
     }
@@ -77,8 +78,8 @@ mod tests {
     #[test]
     fn random() {
         let mut ve2 = vec![2, 4, 6, 8, 1, 5];
-        quick_sort(&mut ve2);
-        assert!(is_sorted(&ve2));
+        let ve2 = quick_sort(&mut ve2);
+        assert_eq!(vec![1, 2, 4, 5, 6, 8], ve2);
     }
 
     #[test]

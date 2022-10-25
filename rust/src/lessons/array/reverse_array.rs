@@ -6,10 +6,11 @@
  */
 
 
+#[allow(unused)]
 pub fn reverse_arr<T>(arr:&mut [T]) -> &[T] 
 where T:Copy + Ord{
     let len = arr.len();
-    for i in 0..arr.len() {
+    for i in 0..(len/2) {
         arr.swap(i, len - i - 1);
     }
     arr

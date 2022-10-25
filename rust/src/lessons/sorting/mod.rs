@@ -5,6 +5,7 @@ mod bucket_sort;
 mod counting_sort;
 mod insertion_sort;
 mod selection_sort;
+mod pigeonhole_sort;
 mod quick_sort;
 
 
@@ -39,8 +40,8 @@ mod tests {
         assert!(is_sorted(&[] as &[usize]));
         assert!(is_sorted(&["a"]));
         // pre-sorted values
-        // different values
         assert!(is_sorted(&[1, 2, 3]));
+        // different values
         assert!(is_sorted(&[0, 3, 4]));
         // equal values
         assert!(is_sorted(&[1, 1, 1]));
