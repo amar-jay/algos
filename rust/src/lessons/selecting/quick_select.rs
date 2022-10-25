@@ -17,9 +17,22 @@
 //!- [github.com/TheAlgorithm](https://github.com/TheAlgorithms/Algorithms-Explanation/blob/master/en/Selection%20Algorithms/Quick%20Select.md)
 //! 
 
-
+/**
+ * [QuickSelect](https://www.geeksforgeeks.org/quickselect-algorithm/) is an algorithm to find the kth smallest number
+ *
+ * Notes:
+ * -QuickSelect is related to QuickSort, thus has optimal best and average
+ * -case (O(n)) but unlikely poor worst case (O(n^2))
+ * -This implementation uses randomly selected pivots for better performance
+ *
+ * @complexity: O(n) (on average )
+ * @complexity: O(n^2) (worst case)
+ * @flow
+ */
 #[allow(unused)]
-pub fn quick_select<T:Ord>(arr: &[T], k: usize) -> T {
+use rand::prelude::*;
+pub fn quick_select<T>(arr: &[T], k: usize) -> T 
+where T:Ord + Copy  {
     arr[0]
 }
 #[cfg(test)]

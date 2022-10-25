@@ -1,3 +1,5 @@
+mod array;
+mod vector;
 mod sorting;
 mod interface;
 mod selecting;
