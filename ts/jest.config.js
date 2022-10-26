@@ -3,7 +3,7 @@
  * https://jestjs.io/docs/configuration
  */
 
-export default {
+const _default = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -155,7 +155,7 @@ export default {
   // The glob patterns Jest uses to detect test files
    testMatch: [
   //   "**/__tests__/**/*.[jt]s?(x)",
-     "./dist/**/**/?(*.)+(spec|test).js"
+     "**/dist/**/**/?(*.)+(spec|test).js"
    ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
@@ -193,3 +193,5 @@ export default {
   // Whether to use watchman for file crawling
   // watchman: true,
 };
+
+module.exports= _default

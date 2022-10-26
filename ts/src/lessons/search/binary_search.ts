@@ -7,12 +7,17 @@
  * value is found or the interval is empty.
  */
 
-type Index = number;
+export type Index = number;
 export const binarySearch = <T extends string | number>(arr: Array<T>, x: T): Index | Error => {
 
   if (arr.length <= 0) {
     return RangeError("Array is empty");
   }
+
+  if (arr.length == 1) {
+    return arr[0] == x ? 0 : -1;
+  }
+
 
   const mid = Math.floor(arr.length / 2); 
 

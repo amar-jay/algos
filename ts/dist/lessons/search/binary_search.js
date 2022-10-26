@@ -13,6 +13,9 @@ const binarySearch = (arr, x) => {
     if (arr.length <= 0) {
         return RangeError("Array is empty");
     }
+    if (arr.length == 1) {
+        return arr[0] == x ? 0 : -1;
+    }
     const mid = Math.floor(arr.length / 2);
     if (arr[mid] == x)
         return mid;
