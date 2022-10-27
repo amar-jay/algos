@@ -6,32 +6,29 @@ on:
       - master
   pull_request:
 
+working-directory: ./rust
 jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
     steps:
       - name: Setup | Checkout
-        working-directory: ./rust
         uses: actions/checkout@v2
       - name: Setup | Rust
-        working-directory: ./rust
         uses: ATiltedTree/setup-rust@v1
         with:
           rust-version: stable
           components: clippy
       - name: Build | Lint
-        working-directory: ./rust
         run: cargo clippy
+        working-directory: ./rust
   compile:
     name: Compile
     runs-on: ubuntu-latest
     steps:
       - name: Setup | Checkout
-        working-directory: ./rust
         uses: actions/checkout@v2
       - name: Setup | Rust
-        working-directory: ./rust
         uses: ATiltedTree/setup-rust@v1
         with:
           rust-version: stable
@@ -54,10 +51,8 @@ jobs:
     needs: [compile]
     steps:
       - name: Setup | Checkout
-        working-directory: ./rust
         uses: actions/checkout@v2
       - name: Setup | Rust
-        working-directory: ./rust
         uses: ATiltedTree/setup-rust@v1
         with:
           rust-version: ${{ matrix.rust }}
