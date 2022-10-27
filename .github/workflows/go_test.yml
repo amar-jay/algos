@@ -18,9 +18,9 @@ jobs:
       - name: Setup | Checkout
         uses: actions/checkout@v3
       - name: Build | Lint
-        working-directory: ./go
         uses: golangci/golangci-lint-action@v3.2.0
         with:
+          working-directory: ./go
           version: v1.48.0
           args: --verbose
 
