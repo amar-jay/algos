@@ -1,7 +1,5 @@
 use crate::solution::data_stuctures::interface::List;
 use std::iter;
-mod arrays;
-mod arrays_2d;
 
 #[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
 /// Array Data Structure
@@ -37,8 +35,15 @@ impl <T>Array<T> {
             .into_boxed_slice()
     }
 
-    fn resize(&mut self) {}
+    fn resize(&mut self) {
+         let new_a = Self::allocate_in_heap(std::cmp::max(self.n * 2, 1));
+        let old_a = std::mem::replace(&mut self.next, new_a);
+        for (i, elem) in old_a.into_vec().into_iter().enumerate().take(self.n) {
+        self.next[i] = elem;
+        }
+    }
 }
+
 
 impl <T: PartialEq>Array<T> {}
 impl <T: Clone>Array<T> {}
@@ -103,11 +108,11 @@ mod test {
         for (i, elem) in "amar".chars().enumerate() {
             stack.add(i, elem);
         }
-        assert_eq!((stack.size(), stack.len()), (4, 4));
-        stack.add(1, 'j');
-        stack.add(1, 'a');
-        stack.add(1, 'y');
-        assert_eq!((stack.size(), stack.len()), (7, 8));
+        assert_eq!((stack.size(), stack.len()), (4, 6));
+        stack.add(0, 'j');
+        stack.add(0, 'a');
+        stack.add(0, 'y');
+        assert_eq!((stack.size(), stack.len()), (7, 10));
         for (i, elem) in "yajamar".chars().enumerate() {
             assert_eq!(stack.get(i), Some(elem));
         }
@@ -119,11 +124,11 @@ mod test {
         for (i, elem) in "amar".chars().enumerate() {
             stack.add(i, elem);
         }
-        assert_eq!((stack.size(), stack.len()), (4, 4));
+        assert_eq!((stack.size(), stack.len()), (4, 6));
         stack.remove(1);
         stack.remove(2);
         stack.remove(3);
         stack.remove(4);
-        assert_eq!((stack.size(), stack.len()), (0, 0));
+        assert_eq!((stack.size(), stack.len()), (2, 4));
     }
 }
