@@ -64,7 +64,7 @@ jobs:
     needs: [compile]
     steps:
       - name: Run Tests
-        working-directory: ./go
+        working-directory: go
         run: make test
 
       - name: Upload coverage to Codecov
