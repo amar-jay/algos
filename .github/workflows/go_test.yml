@@ -1,4 +1,4 @@
-name: Run Tests
+name: Go Tests
 
 on:
   push:
@@ -25,6 +25,7 @@ jobs:
           args: --verbose
 
   compile:
+    name: Compile 
     needs: lint
     strategy:
       matrix:
@@ -59,7 +60,7 @@ jobs:
             ${{ runner.os }}-go-
 
   test:
-    name: Lint
+    name: Test 
     runs-on: ubuntu-latest
     needs: [compile]
     steps:
