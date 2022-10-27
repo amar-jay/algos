@@ -1,13 +1,14 @@
 package main
 
 import (
-	_"github.com/amar-jay/algos/go/solution"
-	"github.com/amar-jay/algos/go/lessons"
 	"testing"
+
+	"github.com/amar-jay/algos/go/lessons"
+	"github.com/amar-jay/algos/go/lessons/array"
+	_ "github.com/amar-jay/algos/go/solution"
 )
 
-func Lessons_Tests(t *testing.T) {
-  //a := solution.NewPalindromeTest(t)
+func TestVector(t *testing.T) {
   t.Parallel();
 
   t.Run("Vector Addition", func(t *testing.T) {
@@ -47,13 +48,22 @@ func Lessons_Tests(t *testing.T) {
   });
 }
 
-func testMango(t *testing.T) {
+func TestArray(t *testing.T) {
+  t.Parallel();
 
-}
+  t.Run("Reverse Array", func(t *testing.T) {
+  a := array.NewArray([]int{1, 2, 3, 4, 5});
+  b := array.NewArray([]int{5, 4, 3, 2, 1});
+  len := len(a.GetArray());
+  a.ReverseArray();
+  a_arr := a.GetArray();
+  b_arr := b.GetArray();
 
-func testOrange(t *testing.T) {
-  //a := solution.NewPalindromeTest(t)
-}
+  for i := 0; i < len; i++ {
+    if a_arr[i] != b_arr[i] {
+    t.Errorf("Expected %v, got %v", a, b)
+    }
+  }
+  });
 
-func TestSolutions(t *testing.T) {
 }
