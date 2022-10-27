@@ -6,7 +6,6 @@ on:
       - master
   pull_request:
 
-working-directory: ./rust
 jobs:
   lint:
     name: Lint
