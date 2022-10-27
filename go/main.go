@@ -1,7 +1,7 @@
 package main
 
 import (
-	"amar-jay/algos/go/solution"
+	"github.com/amar-jay/algos/go/solution"
 
 )
 

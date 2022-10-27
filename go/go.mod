@@ -1,3 +1,3 @@
-module amar-jay/algos/go
+module github.com/amar-jay/algos/go
 
 go 1.19

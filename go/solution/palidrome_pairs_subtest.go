@@ -1,7 +1,7 @@
 package solution
 
 import (
-  "amar-jay/algos/go/utils"
+  "github.com/amar-jay/algos/go/utils"
   "testing"
 )
 

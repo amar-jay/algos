@@ -1,7 +1,7 @@
 package main
 
 import (
-	"amar-jay/algos/go/solution"
+	"github.com/amar-jay/algos/go/solution"
 	"testing"
 )
 
@@ -11,7 +11,7 @@ func TestBanana(t *testing.T) {
 
 func testMango(t *testing.T) {
 
-  //a := solution.NewPalindromeTest(t)
+  a := solution.PalindromePairs(t)
   t.Fatalf(`Error in palindrome`)
 }
 
