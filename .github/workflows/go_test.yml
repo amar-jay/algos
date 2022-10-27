@@ -25,7 +25,6 @@ jobs:
           args: --verbose
 
   compile:
-    name: Compile 
     needs: lint
     strategy:
       matrix:
@@ -37,7 +36,7 @@ jobs:
             go-build: ~/.cache/go-build
           - os: macos-latest
             go-build: ~/Library/Caches/go-build
-    name: ${{ matrix.os }} @ Go ${{ matrix.go }} ${{ matrix.test-tags }}
+    name: Compile | ${{ matrix.os }} @ Go ${{ matrix.go }} ${{ matrix.test-tags }}
     runs-on: ${{ matrix.os }}
     steps:
       - name: Set up Go ${{ matrix.go }}
