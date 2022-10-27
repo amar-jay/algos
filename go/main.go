@@ -2,6 +2,8 @@ package main
 
 import (
 	"github.com/amar-jay/algos/go/solution"
+	_"github.com/amar-jay/algos/go/utils"
+	_"github.com/amar-jay/algos/go/lessons"
 
 )
 
