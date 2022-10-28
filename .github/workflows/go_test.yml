@@ -64,8 +64,6 @@ jobs:
     needs: [compile]
     steps:
       - name: Run Tests
-        working-directory: ../go
-      - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
           flags: ${{ matrix.os }},go-${{ matrix.go }},${{ matrix.test-tags }}
