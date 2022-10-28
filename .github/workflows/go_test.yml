@@ -20,7 +20,7 @@ jobs:
       - name: Build | Lint
         uses: golangci/golangci-lint-action@v3.2.0
         with:
-          working-directory: ./go
+          working-directory: go
           version: v1.48.0
           args: --verbose
 
@@ -64,9 +64,7 @@ jobs:
     needs: [compile]
     steps:
       - name: Run Tests
-        working-directory: go
-        run: make test
-
+        working-directory: ../go
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
@@ -74,5 +72,5 @@ jobs:
 
       - name: Format
         if: matrix.go-version == '1.19.x'
-        working-directory: ./go
+        working-directory: go
         run: diff -u <(echo -n) <(gofmt -d .)
