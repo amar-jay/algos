@@ -1,21 +1,23 @@
-# Resources for Algos 
+# Algos 
+
+### Contents
 
 - Some Codewars, Hackerrank, Leetcode solution
 - Explanation of popular data structures
 - Explanation of popular algorithms
 
-## Languages
+### Languages
 
 - Go
 - Rust
 - TypeScript
 
 
-# Contribution
+### Contribution
 You are free to fork and contribute to this repo. 
 If you want to use this resource for educational purposes, you can do so as you please.
 
-# Resources
+### Resources
 - [The algorithm repo](https://github.com/TheAlgorithm)
 - [Geekforgeeks](https://www.geeksforgeeks.org/)
 - [Codewars](https://codewars.com)
