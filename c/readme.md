@@ -4,14 +4,7 @@
 
 ### Içerik / contents
 
-<<<<<<< HEAD
 - [algos](./algos/main.c) 
-=======
-  - [pdf olarak](./resources/Algoritma_devi.pdf)
-  - [markdown olarak](./resources/Algoritma_devi_md/Abdel-manan%20Junior%20Abdel-rahman%20d40809f8381747d8bedbff4f9a364a6e.md)
-  - [html olarak](./resources/Algoritma_devi_html/Abdel-manan%20Junior%20Abdel-rahman%20d40809f8381747d8bedbff4f9a364a6e.html)
-  - [website olarak](https://links.themanan.me/odev)
->>>>>>> b931f092c8ad22bcfead1cda8d6ec612bae216e5
 
 This folder contains solved algos questions.
 
