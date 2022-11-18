@@ -1,0 +1,872 @@
+<html>
+    <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Algoritma Ödevi</title>
+
+
+	<!-- update the version number as needed -->
+	<script defer src="/__/firebase/9.14.0/firebase-app-compat.js"></script>
+	<!-- include only the Firebase features as you need -->
+	<script defer src="/__/firebase/9.14.0/firebase-auth-compat.js"></script>
+	<script defer src="/__/firebase/9.14.0/firebase-database-compat.js"></script>
+	<script defer src="/__/firebase/9.14.0/firebase-firestore-compat.js"></script>
+	<script defer src="/__/firebase/9.14.0/firebase-functions-compat.js"></script>
+	<script defer src="/__/firebase/9.14.0/firebase-messaging-compat.js"></script>
+	<script defer src="/__/firebase/9.14.0/firebase-storage-compat.js"></script>
+	<script defer src="/__/firebase/9.14.0/firebase-analytics-compat.js"></script>
+	<script defer src="/__/firebase/9.14.0/firebase-remote-config-compat.js"></script>
+	<script defer src="/__/firebase/9.14.0/firebase-performance-compat.js"></script>
+	<!-- 
+	  initialize the SDK after all desired features are loaded, set useEmulator to false
+	  to avoid connecting the SDK to running emulators.
+	-->
+	<script defer src="/__/firebase/init.js?useEmulator=false"></script>
+	<style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="d40809f8-3817-47d8-bedb-ff4f9a364a6e" class="page sans"><header><h1 class="page-title">Abdel-manan Junior Abdel-rahman</h1></header><div class="page-body"><h3 id="983cd669-456a-44ec-b4bc-35d33f97a226" class="block-color-gray">Öğrenci No: 170521923</h3><h2 id="9c127611-2bd9-4dcd-b55b-6484a0c0763e" class=""><mark class="highlight-blue">Algoritma Ödevi </mark></h2><p id="0995d9ea-9e0a-4a31-a750-bd321b3c3dab" class="">
+</p><h2 id="434e28c0-0170-4a57-9939-792fa5bc5bef" class="">Soru 1</h2><h3 id="a8441da5-fd2d-4449-b7cc-c385407378de" class=""><strong><strong><strong><strong><strong><strong><strong><strong>Söz kodu</strong></strong></strong></strong></strong></strong></strong></strong></h3><ul id="a913e2bd-65fd-4202-9b56-47cf32098f40" class="bulleted-list"><li style="list-style-type:disc">initialize an integer array of size 5</li></ul><ul id="72aa6494-093d-4662-b048-305d5e19bf6f" class="bulleted-list"><li style="list-style-type:disc">loop from 0 to 4<ul id="60b72850-f6ea-4cda-9ee8-291e94888f42" class="bulleted-list"><li style="list-style-type:circle">döngü sayımına göre array’de girdi al ve kaydet </li></ul></li></ul><ul id="b169411d-e672-4167-868c-555ee19c3204" class="bulleted-list"><li style="list-style-type:disc">enbuyuk = arrayin birinci sayi</li></ul><ul id="75d37037-bb49-4b7b-a2a7-a4313f837ab6" class="bulleted-list"><li style="list-style-type:disc">enkucuk = arrayin birinci sayi</li></ul><ul id="c9f76c22-caf6-451f-a43d-2115a992bb58" class="bulleted-list"><li style="list-style-type:disc">diziyi döngüye alın ve bir sayi en büyük olup olmadığını kontrol edin, büyük olanı kaydedin. En küçük bulmak için ayni şey yapın. </li></ul><ul id="a2d0316c-cc7c-4380-a82f-07868c5d491c" class="bulleted-list"><li style="list-style-type:disc">Print en büyük ve en küçük</li></ul><h3 id="736f179e-f634-48ab-807c-3b2970c0a5cf" class="">Flowgorithma</h3><figure id="f6cecb92-9cb2-42fb-8c9d-7a239c8ee89a"><div class="source"><a href="Abdel-manan%20Junior%20Abdel-rahman%20d40809f8381747d8bedbff4f9a364a6e/xx.pdf">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f739a87f-bd22-4d82-9432-9746d9cd7355/xx.pdf</a></div></figure><h3 id="76e3cbd0-89db-4a2a-b42b-485e587b897c" class=""><a href="https://github.com/amar-jay/odevler/blob/master/odev_01/01_soru.c"><strong><strong><strong><strong>Code</strong></strong></strong></strong></a></h3><pre id="a83fadb5-d542-44cb-bf65-d7a1dcdeadbf" class="code"><code>int birinci_soru() {
+    int sayi[5];
+
+    // Sayilari girin
+    for (int i = 0; i&lt; 5; i++)
+	scanf(&quot;%d&quot;, &amp;sayi[i]);
+
+    // En buyuk ve en kucuk bulun
+    int buyuk = sayi[0];
+    int kucuk = sayi[0];
+    for (int i = 0; i&lt; 5; i++) {
+	if (sayi[i] &gt; buyuk)
+	    buyuk = sayi[i];
+	if (sayi[i] &lt; kucuk)
+	    kucuk = sayi[i];
+    }
+
+    printf(&quot;En buyuk: %d\nEn kuçuk: %d\n&quot;, buyuk, kucuk);
+
+   return 0; 
+}</code></pre><p id="0d470387-b2fc-4838-b6f3-88e7fc176969" class="">
+</p><p id="4fca09dd-9b0f-4206-ba80-abbed82d37ea" class="">
+</p><h2 id="dc5f4956-8986-4742-be08-7ef9ed06ec26" class="">Soru 2</h2><h3 id="f02c7d0a-1d96-4ef9-8cba-722f8625a9d1" class=""><strong><strong><strong><strong><strong><strong><strong><strong>Söz kodu</strong></strong></strong></strong></strong></strong></strong></strong></h3><ul id="06b3a0b5-0b73-4b81-bcc9-2fe9227d9df1" class="bulleted-list"><li style="list-style-type:disc">Fonksiyon Main<ul id="919c22e6-7647-459b-b2ad-5615c1d7552f" class="bulleted-list"><li style="list-style-type:circle">declare to store “birinci sayı” and “ikinci sayı”</li></ul><ul id="d65857b1-ba58-4506-9d34-0189c827a4d0" class="bulleted-list"><li style="list-style-type:circle">Get input and store in birinci sayi</li></ul><ul id="00ac7c48-d947-44f5-87a5-1c457e57f311" class="bulleted-list"><li style="list-style-type:circle">Get input and store in ikinci sayi</li></ul></li></ul><ul id="cd30a68d-036f-43c6-a3aa-c322d675f946" class="bulleted-list"><li style="list-style-type:disc">if “birinci sayi” mod (”ikinci sayi”)  == 0<ul id="cb0ce407-e611-4224-aab3-92f732727300" class="bulleted-list"><li style="list-style-type:circle">Print it is a multiple</li></ul></li></ul><ul id="553b7e7f-0100-4c34-b2f9-4ef4e5faf3d7" class="bulleted-list"><li style="list-style-type:disc">else print it is not a multiple</li></ul><h3 id="3303861a-6aca-4750-900d-9c2511971b18" class=""><strong>Flowgorithma</strong></h3><figure id="28a2a78d-4e60-42d6-b6a8-a8246b06aa47"><div class="source"><a href="Abdel-manan%20Junior%20Abdel-rahman%20d40809f8381747d8bedbff4f9a364a6e/002.jpg">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b57206a6-0589-4b2a-a1a5-3c26ad71399d/002.jpg</a></div></figure><h3 id="d818a2e2-24b9-4363-927b-de9e6536bb6c" class=""><a href="https://github.com/amar-jay/odevler/blob/master/odev_01/02_soru.c"><strong><strong><strong><strong>Code</strong></strong></strong></strong></a></h3><pre id="f18e040e-dd87-4171-844f-2b4d7887ce0e" class="code"><code>int ikinci_soru() {
+    int birinci, ikinci;
+
+    printf(&quot;Birinci sayi\t&quot;);
+    scanf(&quot;%d&quot;, &amp;birinci);
+    printf(&quot;Ikinci sayi\t&quot;);
+    scanf(&quot;%d&quot;, &amp;ikinci);
+
+//     olup olmadığını kontrol edin.
+    if (birinci % ikinci) {
+	printf(&quot;Tam kat sayi değil\n&quot;);
+	return 1;
+    }
+
+    printf(&quot;Tam kat sayidir\n&quot;);
+    return 0;
+}</code></pre><p id="3954cd2f-59d0-491c-a793-e6f1e4a5bf84" class="">
+</p><h2 id="ae73bca5-f84c-49e8-ae33-d6df7fab8fe7" class="">Soru 3</h2><h3 id="4bdd350e-e663-43ee-bf91-85e75c4ae8cf" class=""><strong><strong><strong><strong><strong><strong><strong><strong>Söz kodu</strong></strong></strong></strong></strong></strong></strong></strong></h3><ul id="becb1382-93d4-4d3c-9523-344ea044836f" class="bulleted-list"><li style="list-style-type:disc">Fonksiyon Main<ul id="a0332f75-9332-4427-af81-6994b26607a6" class="bulleted-list"><li style="list-style-type:circle">declare and assign integer to store “haftalik ücreti” as 200</li></ul><ul id="0a76979c-e17a-4c02-90ea-baa366242f94" class="bulleted-list"><li style="list-style-type:circle">declare integer to store satiş</li></ul></li></ul><ul id="6f64c700-860a-4299-b2e3-c35fd97f0fb1" class="bulleted-list"><li style="list-style-type:disc">Infinite loop (Sonsuz döngü)<ul id="bc4a17a9-b0d5-48fd-b7bc-13b0a84417ad" class="bulleted-list"><li style="list-style-type:circle">Girdi al ve satış’a kaydet </li></ul><ul id="3db8bc4c-4381-4a26-930d-33ab5eb23525" class="bulleted-list"><li style="list-style-type:circle">If satış == -1 then break loop</li></ul><ul id="0bfd46eb-130e-4b66-8ba3-5d8abdd95075" class="bulleted-list"><li style="list-style-type:circle">else print 9% * satis + 200</li></ul></li></ul><h3 id="1ea477bb-cadf-41d7-b81d-52aee011df4e" class="">Flowgorithma</h3><figure id="8df75171-c386-4ced-9443-79d9c16b6e78"><div class="source"><a href="Abdel-manan%20Junior%20Abdel-rahman%20d40809f8381747d8bedbff4f9a364a6e/003.pdf">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/049f0dd7-694f-4117-9f2c-f25d1fe5cb3e/003.pdf</a></div></figure><h3 id="42e3d7d4-43c4-4527-971b-409dc69c0572" class=""><a href="https://github.com/amar-jay/odevler/blob/master/odev_01/03_soru.c"><strong><strong><strong><strong>Code</strong></strong></strong></strong></a></h3><pre id="6e6069bb-9efa-4b8e-a738-9e25eba0bb56" class="code"><code>int ucuncu_soru() {
+    double haftalik = 200, satis;
+
+    while (1 == 1) {
+	printf(&quot;Dolar cinsiden satış tutarını giriniz(Çikiş için -1): &quot;);
+	scanf(&quot;%lf&quot;, &amp;satis);
+
+	if (satis == -1) break;
+	printf(&quot;Maaş: %.2f$\n&quot;, 0.09*satis + 200);
+    }
+
+
+    return 0;
+}</code></pre><p id="f8c3a17a-cfd5-483a-9a00-f7644077a131" class="">
+</p><h2 id="d97d46b7-4d65-4709-9c50-49a39e252745" class="">Soru 4</h2><h3 id="552435b5-1051-48a0-adbe-17ec31518ac6" class=""><strong><strong><strong><strong><strong><strong><strong><strong>Söz kodu</strong></strong></strong></strong></strong></strong></strong></strong></h3><ul id="965a1400-74ea-4cb6-801e-5a6555225bab" class="bulleted-list"><li style="list-style-type:disc">Fonksiyon Main<ul id="fdc87da5-a598-4d8d-adf0-063617ff817b" class="bulleted-list"><li style="list-style-type:circle">declare an integer to store “en buyuk” and “sayi”</li></ul><ul id="bd507e76-eb37-4f08-a6df-7be60053a248" class="bulleted-list"><li style="list-style-type:circle">declare integer to store satiş</li></ul></li></ul><ul id="2d3dad80-8eaf-463a-a748-93957a6ffa02" class="bulleted-list"><li style="list-style-type:disc">Loop from 0 to 9 <ul id="2e239422-ddba-425b-8af2-c3b6f18b558e" class="bulleted-list"><li style="list-style-type:circle">Girdi al ve sayi’a kaydet </li></ul><ul id="b55e5077-7e84-4f22-805e-195607978fa0" class="bulleted-list"><li style="list-style-type:circle">If enbuyuk &lt; sayi then enbuyuk = sayi </li></ul></li></ul><ul id="ecf572c3-742f-4efa-a1a1-011e32e4fbd8" class="bulleted-list"><li style="list-style-type:disc">print enbuyuk </li></ul><h3 id="a98d8263-8bb0-4029-a15c-a8118071ef66" class="">Flowgorithma</h3><figure id="cd35928a-492a-4c1e-922e-9da7945c79d7"><div class="source"><a href="Abdel-manan%20Junior%20Abdel-rahman%20d40809f8381747d8bedbff4f9a364a6e/004.pdf">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/16fc4321-43fb-4f5d-9c95-e81701849cda/004.pdf</a></div></figure><h3 id="53596d7b-4316-488c-a666-e875b2241857" class=""><a href="https://github.com/amar-jay/odevler/blob/master/odev_01/04_soru.c"><strong><strong><strong><strong>Code</strong></strong></strong></strong></a></h3><pre id="ed1cc15e-3608-456f-a6bd-ad62f25cf123" class="code"><code>int dorduncu_soru() {
+    int en_buyuk, sayi;
+
+    for (int i = 0; i&lt; 10; i++) {
+	puts(&quot;Sayilari girin&quot;);
+       	scanf(&quot;%d&quot;, &amp;sayi);
+	if (en_buyuk &lt; sayi) en_buyuk = sayi;
+    }
+
+    printf(&quot;En Büyük sayı:\t%d&quot;, en_buyuk);
+    return 0;
+}</code></pre><p id="b8b876d1-9413-4437-ae80-eb30be1ffefd" class="">
+</p><h2 id="bb1e270c-e4ea-4fa3-b104-d13d7b1b3ff7" class="">Soru 5</h2><h3 id="dd4f4a45-7914-4125-ab08-f80ee11b8aad" class=""><strong><strong><strong><strong><strong><strong><strong><strong>Söz kodu</strong></strong></strong></strong></strong></strong></strong></strong></h3><ul id="956536e3-2661-41bc-bebf-ac366f62c631" class="bulleted-list"><li style="list-style-type:disc">Fonksiyon Main<ul id="dfb743e7-bfee-4a3b-9772-28ef5f2ac3fb" class="bulleted-list"><li style="list-style-type:circle">print “A    A+2    A+4    A+6”</li></ul><ul id="592bd656-7e11-4536-beba-7c9020cbb7b4" class="bulleted-list"><li style="list-style-type:circle">declare integer to store satiş</li></ul></li></ul><ul id="b400b2cd-902e-4c40-87f2-881f369a2c0f" class="bulleted-list"><li style="list-style-type:disc">Loop from 0 to 9 where loop count is i<ul id="2414394c-e3c0-42fa-aa46-c4ff9f39e6c7" class="bulleted-list"><li style="list-style-type:circle">print “3*i    3*i+2    3*i+4    3*i+6”</li></ul></li></ul><h3 id="c348e029-b864-4897-8421-6f642151de4e" class="">Flowgorithma</h3><figure id="4b2d6d64-9d19-4ec5-9b46-ed9de6ec9684"><div class="source"><a href="Abdel-manan%20Junior%20Abdel-rahman%20d40809f8381747d8bedbff4f9a364a6e/005.pdf">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8cca5aad-7cd2-472e-93fd-049a6b74dcb9/005.pdf</a></div></figure><h3 id="b537216f-8f34-48d2-b0bf-95b6b23c7c06" class=""><a href="https://github.com/amar-jay/odevler/blob/master/odev_01/05_soru.c"><strong><strong><strong><strong>Code</strong></strong></strong></strong></a></h3><pre id="90d4078e-a64e-4873-8673-8ce1c8cffc4a" class="code"><code>int besinci_soru() {
+
+    puts(&quot;A\tA+2\tA+4\tA+6&quot;);
+    for (int i = 1; i&lt;= 5; i++) {
+	printf(&quot;%d\t%d\t%d\t%d\n&quot;, 3*i, 3*i+2, 3*i+4, 3*i+6);
+    }
+    return 0;
+}</code></pre><p id="e51be85e-0e5a-44c0-b420-52cc56b8500a" class="">
+</p><h2 id="46f10038-7eac-43a6-a0d0-fc608538ad21" class="">Soru 6</h2><h3 id="63097ec3-da37-4670-8960-cc00ea8e3885" class=""><strong><strong><strong><strong><strong><strong><strong><strong>Söz kodu</strong></strong></strong></strong></strong></strong></strong></strong></h3><ul id="465b2ae8-0057-4b6c-8325-c60a84002f69" class="bulleted-list"><li style="list-style-type:disc">Fonksiyon Main<ul id="c756ba7d-5257-4313-9c46-9ad2a5d0ed07" class="bulleted-list"><li style="list-style-type:circle">print &quot;sayi girin&quot;</li></ul><ul id="1311a4ec-588d-41e5-8c4c-80178af71ed6" class="bulleted-list"><li style="list-style-type:circle">declare integer as sayi</li></ul><ul id="9daf4a9e-12c9-429f-a654-328e6cf6de7b" class="bulleted-list"><li style="list-style-type:circle">get input into sayi</li></ul></li></ul><ul id="ffd40e8a-69a8-427f-bc31-25747770182c" class="bulleted-list"><li style="list-style-type:disc">Loop from 1 to sayi * sayi where loop count is i<ul id="54ba230b-1f84-47ec-a2dc-2758b7d3c559" class="bulleted-list"><li style="list-style-type:circle">print “* ”</li></ul><ul id="417691aa-9fd5-4657-a0ef-a6242b594e44" class="bulleted-list"><li style="list-style-type:circle">if (i%sayi == 0) print “\n”</li></ul></li></ul><h3 id="cc5ce22f-59cb-448f-8908-c049d43215b0" class="">Flowgorithma</h3><figure id="8dfbf80a-8947-4cfd-b18f-6ee79a4f6678"><div class="source"><a href="Abdel-manan%20Junior%20Abdel-rahman%20d40809f8381747d8bedbff4f9a364a6e/006.pdf">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bebe0079-e785-4cb9-99ca-051337340944/006.pdf</a></div></figure><h3 id="f9dffccd-730a-4e4a-bf0a-ea9b39aaa907" class=""><a href="https://github.com/amar-jay/odevler/blob/master/odev_01/06_soru.c"><strong><strong><strong><strong>Code</strong></strong></strong></strong></a></h3><pre id="3ae140a7-9100-4e8a-92ce-2df767b5f740" class="code"><code>int altinci_soru() {
+    int sayi;
+    puts(&quot;sayi girin&quot;);
+    scanf(&quot;%d&quot;, &amp;sayi);
+
+  for (int i = 1; i&lt;= sayi*sayi; i++) {
+		printf(&quot;* &quot;);
+		if (i%sayi == 0) printf(&quot;\n&quot;);
+   }
+}</code></pre><p id="9bdabae0-5b4a-450e-a211-7ea003741b4d" class="">
+</p><h2 id="0a24c9bd-8497-4d1e-be57-e68d5d69f919" class="">Soru 7</h2><h3 id="861fb68a-7959-4a86-ad7d-9863cb7c82f7" class=""><strong><strong><strong><strong><strong><strong><strong><strong>Söz kodu</strong></strong></strong></strong></strong></strong></strong></strong></h3><ul id="6e3829a7-fc3f-4561-8c49-ad52e0514ca5" class="bulleted-list"><li style="list-style-type:disc">Fonksiyon Main<ul id="86940ff1-dfc8-420a-8bf8-5ec5d1131786" class="bulleted-list"><li style="list-style-type:circle">declare integer sayi, reverse=0  and n </li></ul><ul id="3a32e4ba-789e-4980-ae7e-5c33485bbcb6" class="bulleted-list"><li style="list-style-type:circle">print “sayi girin”</li></ul><ul id="95b29354-3fcd-450a-99fb-68d561623d33" class="bulleted-list"><li style="list-style-type:circle">get input into sayi</li></ul><ul id="9a485ad5-93e4-4162-ac1f-0a0001bee2a6" class="bulleted-list"><li style="list-style-type:circle">n = sayi</li></ul></li></ul><ul id="fe63862b-f381-4f9a-a12d-871552a00a52" class="bulleted-list"><li style="list-style-type:disc">for n= sayi; n ≠ 0 , n = n / 10<ul id="4a81ca0a-c78d-46b2-939b-b7729072ed5f" class="bulleted-list"><li style="list-style-type:circle">reverse = reverse * 10 + (n % 10)</li></ul><ul id="01facb1f-4e6d-4a18-830d-d50f2d756430" class="bulleted-list"><li style="list-style-type:circle">n = n / 10</li></ul></li></ul><p id="f69f104b-278b-4f9e-bb7a-14d4eb80715f" class="">if sayi == reverse  then print “palidrom sayıdır”</p><p id="28105665-b60f-4f0f-8b0e-42b771dca76c" class="">else print “palidrom sayi değildir”</p><h3 id="dc7bc0c4-aac5-4416-90bb-c03e6b18a218" class="">Flowgorithma</h3><figure id="cf5cc0ff-ccbc-4ad9-8796-1b9c27c55dfd"><div class="source"><a href="Abdel-manan%20Junior%20Abdel-rahman%20d40809f8381747d8bedbff4f9a364a6e/007.pdf">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0f2a768a-1ba1-4a32-94ea-2c9bd4a66e10/007.pdf</a></div></figure><h3 id="fb865202-54d9-4524-9032-923fa24883c3" class=""><a href="https://github.com/amar-jay/odevler/blob/master/odev_01/07_soru.c"><strong><strong><strong><strong>Code</strong></strong></strong></strong></a></h3><pre id="8691da3a-b542-4a5d-96ca-71652dfe14a9" class="code"><code>
+int diger_yontem() {
+    char sayi[5];
+    // Get number
+    puts(&quot;sayi girin(beş basmaklı olmalı)&quot;);
+    scanf(&quot;%s&quot;, sayi);
+
+	for (int i = 0; i&lt;3; i++) {
+		if (sayi[i] != sayi[4-i]) {
+	    printf(&quot;[ %s ] Palidrom değil&quot;, sayi);
+	    return 1;
+		}
+  }
+
+  printf(&quot;[ %s ] Palidrom sayidir\n&quot;, sayi);
+
+  return 0;
+}
+int yedinci_soru() {
+    char sayi[5];
+    // Get number
+    puts(&quot;sayi girin(beş basmaklı olmalı)&quot;);
+    scanf(&quot;%s&quot;, sayi);
+
+	for (int n = sayi;n != 0; n/=10) {
+		reverse = reverse * 10 + (n % 10)
+  }
+
+	if (sayi == reverse)
+		printf(&quot;[ %s ] Palidrom sayidir\n&quot;, sayi);
+	else
+		printf(&quot;Palidrom sayi değil&quot;)ş
+
+  return 0;
+}</code></pre><h2 id="ea01d424-0d52-42d5-876b-4558ee9302c0" class="">Soru 8</h2><h3 id="15596ee9-f879-4da5-8efd-5beec8ed5b8d" class=""><strong><strong><strong><strong><strong><strong><strong><strong>Söz kodu</strong></strong></strong></strong></strong></strong></strong></strong></h3><ul id="a8710adb-1640-4718-8a3f-fd2cba725a95" class="bulleted-list"><li style="list-style-type:disc">Fonksiyon Main<ul id="93ab1d67-9111-4f9f-abb9-4d7acb4d6de9" class="bulleted-list"><li style="list-style-type:circle">declare integer num, sayi, kat=1 , onluk = 0; </li></ul><ul id="50b4ceb4-d7df-4764-8562-c3d686245b39" class="bulleted-list"><li style="list-style-type:circle">print “sayi girin”</li></ul><ul id="0f6eb52d-b4fb-4f62-9cb5-cbc9e6215a17" class="bulleted-list"><li style="list-style-type:circle">get input into sayi</li></ul><ul id="0d8c5c2c-161b-470a-a052-d17a76f59c6d" class="bulleted-list"><li style="list-style-type:circle">n = sayi</li></ul></li></ul><ul id="b733f02c-34cf-4a1b-b844-5ad4c921291b" class="bulleted-list"><li style="list-style-type:disc">while sayi &gt; 0<ul id="0f022110-874e-453c-940a-389fe374e816" class="bulleted-list"><li style="list-style-type:circle">onluk = onluk + (num * kat)</li></ul><ul id="9cf10da0-6791-48b5-86cc-844215b64dc7" class="bulleted-list"><li style="list-style-type:circle">kat *= 2;</li></ul></li></ul><ul id="d6542536-174b-438a-9e52-bf3894968a3d" class="bulleted-list"><li style="list-style-type:disc">print onluk</li></ul><h3 id="be092808-955c-4aa7-888c-d2871f6cedb2" class="">Flowgorithma</h3><figure id="6175d61a-fb1f-4afe-8e75-7bf261750c52"><div class="source"><a href="Abdel-manan%20Junior%20Abdel-rahman%20d40809f8381747d8bedbff4f9a364a6e/008.pdf">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2923f89b-e575-4249-8ab6-f9b7d1539992/008.pdf</a></div></figure><h3 id="4d3a9161-caa4-420a-a123-75476f3555cc" class=""><a href="https://github.com/amar-jay/odevler/blob/master/odev_01/08_soru.c"><strong><strong><strong><strong>Code</strong></strong></strong></strong></a></h3><pre id="04dc132e-e613-4753-b2ed-10161c21c217" class="code"><code>int sekizinci_soru() {
+    int num,kat=1;
+    int onluk=0;
+
+    int sayi;
+    puts(&quot;sayi girin&quot;);
+    scanf(&quot;%d&quot;, &amp;sayi);
+
+    // example: - 101
+    // 1 -&gt; 1 * 1 = 1 
+    // 0 -&gt; 0 * 2 = 0
+    // 1 -&gt; 1 * 4 = 4
+    // ans = 1 + 0 + 4;
+    // iterate over the number
+  while (sayi &gt; 0) {
+		int num = sayi%10;
+		onluk += num * kat;
+
+		sayi = (int) sayi/10;
+		kat *= 2;
+  }
+    
+	printf(&quot;Onluk Sayi: %d\n&quot;, onluk);
+
+
+}</code></pre><p id="99e52301-81f7-4fe7-9e08-c3c8f5874491" class="">
+</p><h2 id="f9f993ef-388a-4981-9d94-f1ed19338f8c" class="">Soru 9</h2><h3 id="47e234a7-a0b8-472f-baed-d154158cde5a" class=""><strong><strong><strong><strong><strong><strong><strong><strong>Söz kodu</strong></strong></strong></strong></strong></strong></strong></strong></h3><ul id="46cead2b-1f8d-4f28-8785-ff0b5dfb7994" class="bulleted-list"><li style="list-style-type:disc">Fonksiyon Main<ul id="7d293db2-b90f-466e-ace1-62631e479c6a" class="bulleted-list"><li style="list-style-type:circle">declare integer n, count, sayi, kat=1 , onluk = 0; </li></ul><ul id="ddd3f4a1-64a3-4258-9ed9-ec484bd5b386" class="bulleted-list"><li style="list-style-type:circle">print “sayi girin”</li></ul><ul id="7af9d9b1-ce9a-4327-be07-ab54d994ce57" class="bulleted-list"><li style="list-style-type:circle">get input into n</li></ul></li></ul><ul id="c59ad29d-ea52-4200-80b7-c1eba4e9d676" class="bulleted-list"><li style="list-style-type:disc">while n &gt; 0:<ul id="f60582f9-4cb9-4960-a3e6-32c055c43b86" class="bulleted-list"><li style="list-style-type:circle">assign num = n % 10</li></ul><ul id="92ad65f7-c13d-432f-a4d0-998c97f94ad0" class="bulleted-list"><li style="list-style-type:circle">if num == 9 then count = count + 1;</li></ul><ul id="dc8f5e6d-5062-424e-8828-8e7dcfb18a19" class="bulleted-list"><li style="list-style-type:circle">n = quotient of (n / 10)</li></ul></li></ul><h3 id="aa083c68-26c7-4918-ae39-cc838e3ddbcc" class="">Flowgorithma</h3><figure id="7b2175cb-8019-4f97-9296-377129d61f90"><div class="source"><a href="Abdel-manan%20Junior%20Abdel-rahman%20d40809f8381747d8bedbff4f9a364a6e/009.pdf">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/dc854a2c-3458-481a-8bdc-8fa035ad920f/009.pdf</a></div></figure><h3 id="095f51e3-faa1-459c-96fe-0f6144221a65" class=""><a href="https://github.com/amar-jay/odevler/blob/master/odev_01/09_soru.c"><strong><strong><strong><strong>Code</strong></strong></strong></strong></a></h3><pre id="53854f96-9637-4dad-b471-beadfb42fbb0" class="code"><code>int dokuzuncu_soru() {
+
+    long long int sayi;
+    int sayma=0;
+    puts(&quot;sayi girin&quot;);
+    scanf(&quot;%lld&quot;, &amp;sayi);
+
+    while (sayi &gt; 0) {
+	// şuanki rakam
+	int num = sayi % 10;
+
+	if ( num == 9 ) ++sayma;
+	sayi = (int) sayi / 10;
+    }
+
+    printf(&quot;%d tane 9 var\n&quot;, sayma);
+    return 0;
+}</code></pre><h2 id="0b0a35cf-d260-42dc-886b-c8d35918d1ec" class="">Soru 10</h2><h3 id="22c2caec-c9e6-4af1-b669-c49870759ae4" class=""><strong><strong><strong><strong><strong><strong><strong><strong>Söz kodu</strong></strong></strong></strong></strong></strong></strong></strong></h3><ul id="9979d681-2f48-4a80-ab2d-4f3e9f520aa5" class="bulleted-list"><li style="list-style-type:disc">Fonksiyon Main<ul id="8ea61d6f-df20-44b2-89bd-74924deb46ae" class="bulleted-list"><li style="list-style-type:circle">declare integer factorial = 1, sayi; </li></ul><ul id="0737a50d-cda5-45fa-bb6a-1c6b4ea71cf3" class="bulleted-list"><li style="list-style-type:circle">print “sayi girin”</li></ul><ul id="6fe40852-ca79-4596-a2b1-fe55e18a5b52" class="bulleted-list"><li style="list-style-type:circle">get input into sayi</li></ul></li></ul><ul id="f489a7c4-02b3-48d0-abfb-94209f5df2a1" class="bulleted-list"><li style="list-style-type:disc">if sayi &lt; 0:<ul id="1aa537fb-675f-4bbc-8d88-06060761b45b" class="bulleted-list"><li style="list-style-type:circle">print “sayi positif olamali”</li></ul><p id="58476849-e843-42b8-b13a-7b99c8b626e6" class="">else </p><ul id="4e31968b-2302-4d08-900b-04a89104f3ba" class="bulleted-list"><li style="list-style-type:circle">loop from 1 to sayi where loop count is i</li></ul><ul id="ea752e0c-ca08-4bd3-be21-7e6af79fcac5" class="bulleted-list"><li style="list-style-type:circle">factorial *= i;</li></ul><p id="8accf0f5-e534-4fdd-aed0-4166034bf48d" class="">
+</p><p id="369a6aff-0996-4f4d-ad22-648f40c68d57" class="">print factorial</p></li></ul><h3 id="107e77f1-83a6-4dcf-bcca-cb3f62e9be3b" class="">Flowgorithma</h3><figure id="506c97c4-4934-438c-9298-5058e4464063"><div class="source"><a href="Abdel-manan%20Junior%20Abdel-rahman%20d40809f8381747d8bedbff4f9a364a6e/010.pdf">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/46912eb1-d6b6-452c-b1c3-440eaf9b4af7/010.pdf</a></div></figure><h3 id="520accf2-95cc-40e4-bd32-b224cfbd6be6" class=""><a href="https://github.com/amar-jay/odevler/blob/master/odev_01/10_soru.c"><strong><strong><strong><strong>Code</strong></strong></strong></strong></a></h3><pre id="1c839082-42c8-4d67-816e-28eadf7d2bc4" class="code"><code>int onuncu_soru() {
+
+    int factorial = 1,sayi;
+    puts(&quot;factorial bulmak için sayi girin&quot;);
+    scanf(&quot;%d&quot;, &amp;sayi);
+    
+    if (sayi &lt; 0) {
+	puts(&quot;Sayi positif olmalidir&quot;);
+	return 1;
+    }
+
+    for (int i = 1; i&lt;= sayi; i++) {
+	factorial *= i;
+    }
+
+    printf(&quot;Factorial: %d\n&quot;, factorial);
+
+}</code></pre><p id="ab018c10-80f8-4f1c-af0d-03d7f8d46c30" class="">
+</p></div></article></body></html>
