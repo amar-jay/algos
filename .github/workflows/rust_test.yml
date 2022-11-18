@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup | Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup | Rust
         uses: ATiltedTree/setup-rust@v1
         with:
@@ -41,18 +41,15 @@ jobs:
         os:
           - ubuntu-latest
           - macOS-latest
-        rust:
-          - stable
-          - nightly
     runs-on: ${{ matrix.os }}
     needs: [compile]
     steps:
       - name: Setup | Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup | Rust
         uses: ATiltedTree/setup-rust@v1
         with:
-          rust-version: ${{ matrix.rust }}
+          rust-version: stable 
       - name: Build | Compile
         working-directory: ./rust
         run: cargo test

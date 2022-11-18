@@ -29,14 +29,14 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
-        go: [1.16, 1.19]
-        test-tags: ['', '-tags go_json']
+        #        go: [1.16, 1.19]
+        go: [1.16]
         include:
           - os: ubuntu-latest
             go-build: ~/.cache/go-build
           - os: macos-latest
             go-build: ~/Library/Caches/go-build
-    name: Compile | ${{ matrix.os }} @ Go ${{ matrix.go }} ${{ matrix.test-tags }}
+    name: Compile | ${{ matrix.os }} @ Go ${{ matrix.go }} 
     runs-on: ${{ matrix.os }}
     steps:
       - name: Set up Go ${{ matrix.go }}
@@ -66,8 +66,7 @@ jobs:
       - name: Run Tests
         uses: codecov/codecov-action@v3
         with:
-          flags: ${{ matrix.os }},go-${{ matrix.go }},${{ matrix.test-tags }}
-
+          flags: ${{ matrix.os }},go-${{ matrix.go }}, 
       - name: Format
         if: matrix.go-version == '1.19.x'
         working-directory: go
