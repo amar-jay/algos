@@ -13,6 +13,7 @@
 #include "12_soru.c"
 #include "13_soru.c"
 #include "14_soru.c"
+#include "015_string_ends_with.c"
 
 int main() {
 //	return soru_01();
@@ -27,8 +28,9 @@ int main() {
 //	return soru_10();
 //	return soru_11();
 //	return soru_12();
-	return soru_13();
-//    return soru_14();
+//	return soru_13();
+//	return soru_14();
+	return soru_015();
 }
 
 
