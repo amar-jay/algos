@@ -16,6 +16,7 @@
 #include "015_string_ends_with.c"
 //#include "016_generate_random_number.c"
 #include "017_generate_random_numbers_loop.c"
+#include "018_rock_paper_scissors.c"
 
 int main() {
 //	return soru_01();
@@ -34,7 +35,8 @@ int main() {
 //	return soru_14();
 //	return soru_015();
 //	return soru_016();
-	return soru_017();
+//	return soru_017();
+	return soru_018();
 }
 
 
