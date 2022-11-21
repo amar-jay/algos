@@ -74,3 +74,4 @@ export function pathFinder(maze: string): boolean {
   }
   return false;
 }
+
