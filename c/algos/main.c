@@ -14,6 +14,8 @@
 #include "13_soru.c"
 #include "14_soru.c"
 #include "015_string_ends_with.c"
+//#include "016_generate_random_number.c"
+#include "017_generate_random_numbers_loop.c"
 
 int main() {
 //	return soru_01();
@@ -30,7 +32,9 @@ int main() {
 //	return soru_12();
 //	return soru_13();
 //	return soru_14();
-	return soru_015();
+//	return soru_015();
+//	return soru_016();
+	return soru_017();
 }
 
 

@@ -10,8 +10,21 @@ int birinci_soru() {
 
 
 
-  for (int i=0; i<=5;i++)
+  for (int i=0; i<5;i++)
+    scanf("%d", &sayilar[i]);
 
+  int MAX=sayilar[0], MIN=sayilar[0];
+  for (int i=0; i<5;i++){
+    if (sayilar[i] == MAX)
+      MAX = sayilar[i];
+
+    if (sayilar[i] == MIN)
+      MIN = sayilar[i];
+  }
+
+  printf("MAX: %d\nMIN: %d", MAX, MIN);
+
+  return 0;
 }
 
 
