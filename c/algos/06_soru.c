@@ -14,5 +14,6 @@ int altinci_soru() {
 	if (i%sayi == 0) printf("\n");
     }
 
+  return 0;
 
 }

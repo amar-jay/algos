@@ -17,6 +17,7 @@
 //#include "016_generate_random_number.c"
 #include "017_generate_random_numbers_loop.c"
 #include "018_rock_paper_scissors.c"
+#include "019_tmp.c"
 
 int main() {
 //	return soru_01();
@@ -25,7 +26,7 @@ int main() {
 //	return soru_04();
 //	return soru_05();
 //	return soru_06();
-//	return soru_07();
+	return soru_07();
 //	return soru_08();
 //	return soru_09();
 //	return soru_10();
@@ -36,7 +37,8 @@ int main() {
 //	return soru_015();
 //	return soru_016();
 //	return soru_017();
-	return soru_018();
+//	return soru_018();
+//	return soru_019();
 }
 
 
