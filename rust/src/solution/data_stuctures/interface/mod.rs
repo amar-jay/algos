@@ -4,16 +4,20 @@
 
 ///trait for a Queue data structure
 /// last-in first-out data structure
-pub trait Queue<T> {
-    fn add(&mut self, x:T);
+pub trait IQueue<T> {
+    fn add(&mut self, x:T) -> &mut Self;
     fn remove(&mut self) -> Option<T>;
+    fn len(&self) -> u32;
+    fn new() -> Self;
 }
 
 ///trait for a Stack data structure
 /// first-in first-out data structure
-pub trait Stack<T> {
-    fn push(&mut self, x:T);
+pub trait IStack<T> {
+    fn push(&mut self, x:T) -> &mut Self;
     fn pop(&mut self) -> Option<T>;
+    fn len(&self) -> u32;
+    fn new() -> Self;
 }
 
 ///trait for a List data structure
