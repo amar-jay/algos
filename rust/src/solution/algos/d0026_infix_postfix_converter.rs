@@ -19,7 +19,7 @@ You may read more about postfix notation, also called Reverse Polish notation, h
 *
 */
 #[allow(unused)]
-fn to_postfix(infix: &str) -> String {
+fn my_sol(infix: &str) -> String {
     let mut stack:Stack<char> = Stack::new();
     let mut queue:Queue<char> = Queue::new();
     let mut ans = String::from("");
@@ -64,6 +64,45 @@ fn to_postfix(infix: &str) -> String {
     ans
 }
 
+#[allow(unused)]
+fn to_postfix(infix: &str) -> String {
+    return aliter(infix)
+}
+///TODO: try to understand what the hell you did
+#[allow(unused)]
+fn aliter(infix: &str) -> String {
+    let mut result = Vec::new();
+    let mut operators = Vec::new();
+    for ch in infix.chars() {
+        match ch {
+            '0'..='9' => result.push(ch),
+            '+' | '-' => {
+                while !operators.is_empty() && *operators.last().unwrap() != '(' {
+                    result.push(operators.pop().unwrap());
+                }
+                operators.push(ch);
+            }
+            '*' | '/' => {
+                while !operators.is_empty() && !"+-(".contains(*operators.last().unwrap()) {
+                    result.push(operators.pop().unwrap());
+                }
+                operators.push(ch);
+            }
+            '^' | '(' => operators.push(ch),
+            ')' => {
+                while *operators.last().unwrap() != '(' {
+                    result.push(operators.pop().unwrap());
+                }
+                operators.pop();
+            }
+            _ => panic!("Must be unreachable"),
+        }
+    }
+    while !operators.is_empty() {
+        result.push(operators.pop().unwrap());
+    }
+    result.into_iter().collect()
+}
 // Add your tests here.
 // See https://doc.rust-lang.org/stable/rust-by-example/testing/unit_testing.html
 
