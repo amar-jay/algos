@@ -31,8 +31,8 @@ func Anagrams(word string, words []string) []string {
 }
 
 func main() {
-//	solution.Run()
-//	x := Anagrams("boy", []string{"boy", "girl"})
+	//	solution.Run()
+	//	x := Anagrams("boy", []string{"boy", "girl"})
 	fmt.Printf("%s", "run test by running \n `go test ./...`\n")
 
 }
