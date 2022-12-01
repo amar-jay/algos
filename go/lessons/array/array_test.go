@@ -1,7 +1,9 @@
 package array
+
 import "testing"
+
 func TestArray(t *testing.T) {
-//	t.Parallel()
+	//	t.Parallel()
 
 	t.Run("Reverse Array", func(t *testing.T) {
 		a := NewArray([]int{1, 2, 3, 4, 5})

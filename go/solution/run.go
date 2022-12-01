@@ -1,7 +1,6 @@
 package solution
 
 func Run() {
-  println("Running..");
-   PalindromePairs([]string{}); 
+	println("Running..")
+	PalindromePairs([]string{})
 }
-

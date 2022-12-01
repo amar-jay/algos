@@ -1,7 +1,9 @@
 package vector
-import "testing"; 
+
+import "testing"
+
 func TestVector(t *testing.T) {
-//	t.Parallel()
+	//	t.Parallel()
 
 	t.Run("Vector Addition", func(t *testing.T) {
 		a := NewVector2(1, 2)
