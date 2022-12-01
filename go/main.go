@@ -5,6 +5,7 @@ import (
 	_ "github.com/amar-jay/algos/go/utils"
 )
 
+/*
 func check_keys(str_map, word_map []rune) bool {
 	for key := range str_map {
 		for idx := range word_map {
@@ -16,7 +17,6 @@ func check_keys(str_map, word_map []rune) bool {
 	return true
 }
 
-/*
 func Anagrams(word string, words []string) []string {
 	word_map := []rune(word)
 	ans := []string{}
