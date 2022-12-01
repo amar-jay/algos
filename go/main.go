@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/amar-jay/algos/go/solution"
 	_ "github.com/amar-jay/algos/go/utils"
 )
 
@@ -32,8 +31,8 @@ func Anagrams(word string, words []string) []string {
 }
 
 func main() {
-	solution.Run()
-	x := Anagrams("boy", []string{"boy", "girl"})
-	fmt.Printf("%s", x[0])
+//	solution.Run()
+//	x := Anagrams("boy", []string{"boy", "girl"})
+	fmt.Printf("%s", "run test by running \n `go test ./...`\n")
 
 }
