@@ -16,6 +16,7 @@ func check_keys(str_map, word_map []rune) bool {
 	return true
 }
 
+/*
 func Anagrams(word string, words []string) []string {
 	word_map := []rune(word)
 	ans := []string{}
@@ -29,6 +30,7 @@ func Anagrams(word string, words []string) []string {
 	// your code
 	return ans
 }
+*/
 
 func main() {
 	//	solution.Run()

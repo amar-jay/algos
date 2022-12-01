@@ -2,6 +2,7 @@ package search
 
 // /link
 // /https://github.com/TheAlgorithms/Algorithms-Explanation/blob/master/en/Search%20Algorithms/Binary%20Search.md
+/*
 func binary_search[T comparable](arr []T) T {
 	//arr_len := len(arr);
 	//first_half := binary_search(arr[0:arr_len/2]);
@@ -13,6 +14,7 @@ func binary_search[T comparable](arr []T) T {
 
 	return []T{}[0]
 }
+*/
 
 func aliter[T comparable](arr []T, target T) T {
 	len := len(arr)
