@@ -2,8 +2,6 @@ package main
 
 import (
   "fmt"
-  _ "github.com/amar-jay/algos/go/lessons"
-  _ "github.com/amar-jay/algos/go/lessons/search"
     "github.com/amar-jay/algos/go/solution"
   _ "github.com/amar-jay/algos/go/utils"
 )
