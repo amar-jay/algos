@@ -38,4 +38,17 @@ class Algos {
     arr = [...left, ...right];
     return arr;
   }
+  
+    static List<int> mergeArray(List<int> arr1,List<int>arr2) {
+      List<int> ans = []; 
+
+      while (arr1.isNotEmpty && arr2.isNotEmpty) {
+	if (arr1[0] < arr2[0]) {
+	  ans.add(arr1.removeAt(0));
+      } else {
+	  ans.add(arr2.removeAt(0));
+      }
+      }
+      return [...ans, ...arr1, ...arr2];
+    }
 }

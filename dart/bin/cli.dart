@@ -7,6 +7,13 @@ void main(List<String> arguments) {
     return;
   } 
 
+  List<int> l = [9, 8, 9, 3];
+  List<int> r = [1, 2, 3, 4];
+  List<int> lr = [1, 1, 2, 2, 3, 4, 4, 6];
+  //List<int> a = [...l, ...r];
+  List<int> an = Algos.mergeArray(r, l);
+  print("$lr $an");
+
   List<int> lw = [6, 1, 4, 2];
   List<int> lm = [1, 2, 4, 6];
   List<int> ans = Algos.mergeSort(lw);
@@ -22,6 +29,6 @@ void main(List<String> arguments) {
     print("Test Failed: Merge sort $ans $lm");
     return;
   } 
-  print("Test failed");
+  print("Tests Passed");
 
 }
