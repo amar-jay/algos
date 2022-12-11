@@ -20,14 +20,19 @@ class Algos {
   }
 
    static List<int> mergeSort(List<int> arr) {
-    int start = 0;
-    int end = arr.length - 1;
-    int mid = (arr.length /2).floor();
+    int mid = (arr.length/2).floor();
 
-    if (start > end ) {
+    if ( arr.length == 2) {
+      if (arr[0] > arr[1]) {
+	return arr;
+      }
+      return [arr[1], arr[0]];
+    }
+
+    if ( arr.length < 2) {
       return arr;
     }
-    List<int> left = mergeSort(arr.sublist(0, mid + 1));
+    List<int> left = mergeSort(arr.sublist(0, mid));
     List<int> right = mergeSort(arr.sublist(mid,));
 
     arr = [...left, ...right];
