@@ -18,6 +18,8 @@
 #include "017_generate_random_numbers_loop.c"
 #include "018_rock_paper_scissors.c"
 #include "019_tmp.c"
+#include "search/linear.c"
+#include "search/binary.c"
 
 int main()
 {
@@ -38,6 +40,10 @@ int main()
 	//	return soru_015();
 	//	return soru_016();
 	//	return soru_017();
-	return soru_018();
+	//	return soru_018();
 	//	return soru_019();
+  int arr[] = {-1, 3, 4,5,9};
+	//	linear_search(arr, 5, 0);
+		binary_search(arr, 0, 5, 9);
+  return 0;
 }
