@@ -44,6 +44,6 @@ int main()
 	//	return soru_019();
   int arr[] = {-1, 3, 4,5,9};
 	//	linear_search(arr, 5, 0);
-		binary_search(arr, 0, 5, 9);
+	//	binary_search(arr, 0, 5, 5);
   return 0;
 }
