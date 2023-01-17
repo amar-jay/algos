@@ -2,6 +2,8 @@ name: Go Test
 
 on:
   push:
+    path:
+      - go/**
     branches:
       - master
   pull_request:
