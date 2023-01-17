@@ -1,40 +1,33 @@
-//!# Quick Select
-//!
-//!## Problem Statement
-//! Given an array, find the kth largest/ smallest element in a linear time complexity. 
-//!
-//! ### Approach
-//!- Select a pivot element at random
-//!- Apply partitioning as used in quick sort
-//!- After partitioning, the pivot will be placed in its sorted location ie. All elements smaller than the pivot will be on its left and greater on its right
-//!- If index of sorted pivot is k, then the pivot is our kth element and we return the number
-//!- Else, check if 'k' is greater or smaller and choose a new pivot in that range.
-//!- Repeat till we get the kth element at kth position
-//!
-//!### Founder's Name
-//!- This algorithm was developed by Tony Hoare and is also called `Hoare's Selection Algorithm`.
-//!## Resources
-//!- [github.com/TheAlgorithm](https://github.com/TheAlgorithms/Algorithms-Explanation/blob/master/en/Selection%20Algorithms/Quick%20Select.md)
+//! Binary Search 
+//! ============
 //! 
+//! @complexity: O(n) (on average )
+//! @complexity: O(n) (worst case)
 
-/**
- * [QuickSelect](https://www.geeksforgeeks.org/quickselect-algorithm/) is an algorithm to find the kth smallest number
- *
- * Notes:
- * -QuickSelect is related to QuickSort, thus has optimal best and average
- * -case (O(n)) but unlikely poor worst case (O(n^2))
- * -This implementation uses randomly selected pivots for better performance
- *
- * @complexity: O(n) (on average )
- * @complexity: O(n^2) (worst case)
- * @flow
- */
+use std::cmp::Ordering;
 #[allow(unused)]
-pub fn quick_select<T>(arr: &[T], k: usize) -> T 
+pub fn quick_select<T>(arr: &[T], n: T) -> usize
 where T:Ord + Copy  {
-    arr[0]
+    let (mut low, mut high) = (0, arr.len());
+
+    while (low <= high) {
+        let mid = low + (high - low) / 2;
+        match (n.cmp(&arr[mid])) {
+            Ordering::Less => high = mid - 1,
+            Ordering::Greater => low = mid + 1,
+            Ordering::Equal =>  return mid
+        }
+    }
+    0
 }
 #[cfg(test)]
 mod tests {
- 
+    use super::quick_select;
+
+    #[test]
+    fn test_easy() {
+        let arr = [3,4, 5, 6, 8, 9];
+        let ans = quick_select(&arr, 5);
+        assert_eq!(ans, 2);
+    }
 }

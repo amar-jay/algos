@@ -1,4 +1,4 @@
-use crate::solution::data_stuctures::interface::IStack;
+//use crate::solution::data_stuctures::interface::IStack;
 
 
 
@@ -29,6 +29,7 @@ impl <T: Clone> Stack<T> {
         self
     }
 
+    #[allow(dead_code)]
     pub fn len(&self) -> u32 {
         self.len
     }

@@ -14,13 +14,13 @@ This explanation of some of these acould e found in
 
 ### Use 
 
-- To run the program ( Programı çalıştırmak için):
+- To run the program:
 
 ```bash
 make run
 ```
 
-- To build the program ( Programı build için):
+- To build the program:
 
 ```bash
 make build

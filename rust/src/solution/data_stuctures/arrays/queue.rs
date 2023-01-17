@@ -1,4 +1,4 @@
-use crate::solution::data_stuctures::interface::IQueue;
+//use crate::solution::data_stuctures::interface::IQueue;
 
 
 
@@ -18,6 +18,7 @@ impl <T: Clone> Queue<T> {
         self
     }
 
+    #[allow(dead_code)]
     pub fn len(&self) -> u32 {
         self.len
     }
