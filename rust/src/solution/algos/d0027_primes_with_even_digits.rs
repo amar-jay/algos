@@ -27,47 +27,40 @@ Enjoy it!!
 ! */
 
 fn is_prime(n: u64) -> bool {
-    if n % 2 == 0 || n < 2 {
-        return false;
-    }
-
     if n == 2 {
         return true;
     }
 
-    let mut i = 3;
-    while i * i <= n {
-        if n % i == 0 {
-            return false;
-        }
-        i += 2;
+    if n % 2 == 0 || n < 2 {
+        return false;
     }
-    true
+
+    (3..n).step_by(2).all(|i| n % i != 0)
 }
 
+
 fn num_of_even_digits(n: u64) -> usize {
-    let mut n = n;
     let mut count = 0;
-    while n > 0 {
-        if n % 2 == 0 {
+    n.to_string().chars().for_each(|c| {
+        if c == '0' || c == '2' || c == '4' || c == '6' || c == '8' {
             count += 1;
         }
-        n /= 10;
-    }
+    });
     count
 }
 
 #[allow(dead_code)]
 fn main(n: u64) -> u64 {
-    let mut n = n - 1;
     let (mut max, mut max_count) = (0, 0);
-    while n > 0 {
-        let count = num_of_even_digits(n);
-        if is_prime(n) && count > max_count {
-            (max, max_count) = (n, count);
+    (2..n).rev().for_each(|i| {
+        if is_prime(i) {
+            let count = num_of_even_digits(i);
+            if count > max_count {
+                max = i;
+                max_count = count;
+            }
         }
-        n -= 1;
-    }
+    });
     max
 }
 
