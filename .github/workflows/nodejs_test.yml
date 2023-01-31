@@ -18,6 +18,7 @@ jobs:
 
     # working-directory: ./ts
     steps:
+      - run: cd ./ts
 
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -32,7 +33,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
 
-      - run: cd ./ts && pnpm install 
+      - run: pnpm install 
       #      - run: cd ./ts && npm run build --if-present
 
   test:
