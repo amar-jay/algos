@@ -53,7 +53,9 @@ impl Solution {
             let j = combs[&i];
             let k = -i-combs[&i];
             if nums.contains(&k) {
-                ans.push(vec![*i, j, k])
+                let mut x = vec![*i, j, k];
+                x.sort();
+                ans.push(x)
             }
         }
         ans
@@ -61,31 +63,39 @@ impl Solution {
 
     #[allow(dead_code)]
     pub fn solution_1(nums: Vec<i32>) -> Vec<Vec<i32>> {
+        let mut map:HashMap<i32,[usize; 2]> = HashMap::new();
         let mut ans = vec![];
          if nums.len() < 3 {
             return vec![];
         }
         let mut nums = nums;
         nums.sort();
-        nums.dedup();        // find two sums of all
-        println!("{:#?}", nums);
-        for i in 0..nums.len() {
-            for j in 0..nums.len() {
-                if nums[i] != nums[j]  && nums[i] != -nums[i]-nums[j] && nums[j] != -nums[i]-nums[j] && i != j && nums.contains(&(-nums[i]-nums[j])) {
-                    ans.push(vec![nums[i], nums[j], - nums[i] - nums[j]]);
-                }
+ //       nums.dedup();        // find two sums of all
+ //       println!("{:#?}", nums);
 
+        for i in 0..nums.len() {
+            if i != 0 && nums[i] == nums[i - 1] {continue};
+            for j in 0..nums.len() {
+                if i==j {continue};
+                if let Some(k) = map.get(&-(nums[i]+nums[j])){
+                    let mut x =vec![-nums[i]-nums[j], nums[k[0]], nums[k[1]]];
+                    x.sort();
+                    ans.push(x)
+                } else {
+                    if nums.contains(&-(nums[i]+nums[j])){
+                        map.insert(-nums[i]-nums[j], [i, j]);
+                    }
+                }
             }
         }
-
-        ans
-
-
-    }
+               // if j != i + 1 && nums[j] == nums[j - 1] {continue};
+        ans.sort();
+        ans.dedup();
+        ans }
 
     #[allow(dead_code)]
     pub fn three_sum(nums: Vec<i32>) -> Vec<Vec<i32>> {
-        Self::solution_2(nums)
+        Self::solution_1(nums)
     }
 
 }
@@ -102,6 +112,9 @@ mod tests {
             Solution::three_sum(vec![-1, 0, 1, 2, -1, -4]),
             vec![vec![-1, -1, 2], vec![-1, 0, 1]]
         );
+    }
+    #[test]
+    fn test_14() {
         assert_eq!(
             Solution::three_sum(vec![
                 -7, -4, -6, 6, 4, -6, -9, -10, -7, 5, 3, -1, -5, 8, -1, -2, -8, -1, 5, -3, -5, 4,
@@ -138,6 +151,9 @@ mod tests {
                 vec![-1, -1, 2]
             ]
         );
+    }
+    #[test]
+    fn test_13() {
         assert_eq!(
             Solution::three_sum(vec![2, 0, -2, -5, -5, -3, 2, -4]),
             vec![vec![-4, 2, 2], vec![-2, 0, 2]]
