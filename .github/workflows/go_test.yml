@@ -2,7 +2,7 @@ name: Go Test
 
 on:
   push:
-    path:
+    paths:
       - go/**
     branches:
       - master
