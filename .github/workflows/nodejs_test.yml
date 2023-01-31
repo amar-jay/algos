@@ -43,4 +43,5 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - run: cd ./ts && npm run test
+      - run: npm run test
+        working-directory: ./ts
