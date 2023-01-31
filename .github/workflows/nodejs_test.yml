@@ -18,6 +18,8 @@ jobs:
 
     # working-directory: ./ts
     steps:
+      - name: debug
+        run: pwd && ls
 
       - name: Checkout Code
         uses: actions/checkout@v3
