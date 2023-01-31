@@ -21,8 +21,6 @@ jobs:
 
       - name: Checkout Code
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.ref }}
 
       - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
         with:
@@ -34,9 +32,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
 
-      - run: cd ./ts/
-      - run: npm ci 
-      - run: npm run build --if-present
+      - run: cd ./ts && pnpm install 
+      #      - run: cd ./ts && npm run build --if-present
 
   test:
     name: Test 
