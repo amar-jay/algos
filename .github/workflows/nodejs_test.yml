@@ -16,7 +16,7 @@ jobs:
       matrix: 
         node-version: [12.x]
 
-    working-directory: ./ts
+    # working-directory: ./ts
     steps:
 
       - name: Checkout Code
@@ -35,8 +35,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
 
-      - run: npm ci 
-      - run: npm run build --if-present
+      - name: Build | Compile
+        working-directory: ./ts
+        run: npm ci 
+        run: npm run build --if-present
 
   test:
     name: Test 
