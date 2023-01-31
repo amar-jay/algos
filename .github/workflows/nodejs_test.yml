@@ -18,7 +18,6 @@ jobs:
 
     # working-directory: ./ts
     steps:
-      - run: cd ts
 
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -34,6 +33,7 @@ jobs:
           cache: 'pnpm'
 
       - run: pnpm install 
+        working-directory: ./ts
       #      - run: cd ./ts && npm run build --if-present
 
   test:
