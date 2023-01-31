@@ -6,15 +6,16 @@ import (
 	"github.com/amar-jay/algos/go/utils"
 )
 
-func test(t *testing.T, n int, res string) bool{
-  sol := Part(n);
-  ans, err := utils.AssertEqual(sol, res);
-  if err != nil {
-    t.Fatalf("Actual: (%s) Expected (%s)", sol, res);
-    return false;
-  }
-  return ans;
+func Test(t *testing.T, n int, res string) bool {
+	sol := Part(n)
+	ans, err := utils.AssertEqual(sol, res)
+	if err != nil {
+		t.Fatalf("Actual: (%s) Expected (%s)", sol, res)
+		return false
+	}
+	return ans
 }
+
 /*
 func TestIntegerPartionTestIntegerPartion(t *testing.T) {
       test(t, 1, "Range: 0 Average: 1.00 Median: 1.00")

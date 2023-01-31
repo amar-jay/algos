@@ -49,36 +49,41 @@ Try to optimize your program to avoid timing out.
 Memoization can be helpful but it is not mandatory for being successful.
 */
 
-var (see = [][]int{}; )
-var (sol = []int{}; )
-func x(n int)  {
-  if n == 1 {
-    see = append(see, []int{1});
-    sol = append(sol, 1);
-    return;
-  }
+var (
+	see = [][]int{}
+)
+var (
+	sol = []int{}
+)
 
-  if !contains(sol, n) && n > 0  {
-    sol = append(sol, 1);
-    sol = append(sol, n);
-     see = append(see, []int{0, n})
-  }
+func x(n int) {
+	if n == 1 {
+		see = append(see, []int{1})
+		sol = append(sol, 1)
+		return
+	}
 
-  for i:=1; i<=n; i++ {
-    for j:=i; j<=n; j++ {
-      if i+j == n {
-	  if !contains(sol, i*j) && i*j > 0 {
-		  sol = append(sol, i*j);
-		  see = append(see, []int{i, j})
-	  }
-      }
-    }
-    if !contains(sol, i*(n-1)) && i*(n-i) > 0 {
-      sol = append(sol, i*(n-i))
-      see = append(see, []int{i, n-i})
-      x(n-i)
-    }
-  }
+	if !contains(sol, n) && n > 0 {
+		sol = append(sol, 1)
+		sol = append(sol, n)
+		see = append(see, []int{0, n})
+	}
+
+	for i := 1; i <= n; i++ {
+		for j := i; j <= n; j++ {
+			if i+j == n {
+				if !contains(sol, i*j) && i*j > 0 {
+					sol = append(sol, i*j)
+					see = append(see, []int{i, j})
+				}
+			}
+		}
+		if !contains(sol, i*(n-1)) && i*(n-i) > 0 {
+			sol = append(sol, i*(n-i))
+			see = append(see, []int{i, n - i})
+			x(n - i)
+		}
+	}
 }
 
 func contains(arr []int, val int) bool {
@@ -91,16 +96,16 @@ func contains(arr []int, val int) bool {
 }
 
 func Part(n int) string {
-  x(n);
-  ans := sol;
-  fmt.Printf("n : %d", n);
-  fmt.Println(ans);
-  fmt.Println(see);
-  avg := 0.0;
-  for _, v := range ans {
-    avg += float64(v)
-  }
-  avg = avg / float64(len(ans))
+	x(n)
+	ans := sol
+	fmt.Printf("n : %d", n)
+	fmt.Println(ans)
+	fmt.Println(see)
+	avg := 0.0
+	for _, v := range ans {
+		avg += float64(v)
+	}
+	avg = avg / float64(len(ans))
 
-  return fmt.Sprintf("Range: %d Average: %.2f Median: %.2f", ans[len(ans)-1] - ans[0], avg, avg)
+	return fmt.Sprintf("Range: %d Average: %.2f Median: %.2f", ans[len(ans)-1]-ans[0], avg, avg)
 }
