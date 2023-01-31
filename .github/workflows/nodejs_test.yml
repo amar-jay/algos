@@ -18,8 +18,6 @@ jobs:
 
     # working-directory: ./ts
     steps:
-      - name: debug
-        run: pwd && ls
 
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -33,6 +31,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
+          cache-dependency-path: '**/pnpm-lock.yaml'
+
 
       - run: pnpm install 
         working-directory: ./ts
