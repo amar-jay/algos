@@ -17,13 +17,22 @@ jobs:
         node-version: [12.x]
 
     steps:
-      - name: Set up Nodejs ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
 
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
           ref: ${{ github.ref }}
+
+      - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
+        with:
+          version: 6.10.0
+
+      - name: Set up Nodejs ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
       - run: npm ci 
       - run: npm run build --if-present
 
