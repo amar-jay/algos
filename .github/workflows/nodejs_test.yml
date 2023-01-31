@@ -16,6 +16,7 @@ jobs:
       matrix: 
         node-version: [12.x]
 
+    working-directory: ./ts
     steps:
 
       - name: Checkout Code
@@ -29,6 +30,7 @@ jobs:
 
       - name: Set up Nodejs ${{ matrix.node-version }}
         uses: actions/setup-node@v3
+        working-directory: ./ts
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
