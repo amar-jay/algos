@@ -2,7 +2,7 @@ name: Nodejs Test
 
 on:
   push:
-    path:
+    paths:
       - ts/**
     branches:
       - master
