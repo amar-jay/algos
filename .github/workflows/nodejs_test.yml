@@ -33,8 +33,10 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: '**/pnpm-lock.yaml'
 
-
       - run: pnpm install 
+        working-directory: ./ts
+
+      - run: pnpm run test
         working-directory: ./ts
       #      - run: cd ./ts && npm run build --if-present
 
@@ -43,4 +45,4 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - run: npm run test
+      - run: ls && pwd
