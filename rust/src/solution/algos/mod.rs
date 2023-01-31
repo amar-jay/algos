@@ -3,7 +3,9 @@ mod s0002_longest_substring_without_repeating_chars;
 mod s0003_three_sums;
 //mod s0004_add_two_numbers;
 //mod s0005_integer_to_roman;
-mod s0006_spiral_matrix;
+//mod s0006_spiral_matrix;
+mod s0007_longest_common_prefix;
+mod s0008_3sum_closest;
 
 
 mod d0001_dna_to_rna_conversion;
