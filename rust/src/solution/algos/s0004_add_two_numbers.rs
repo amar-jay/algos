@@ -19,33 +19,42 @@
 
 #[derive(Debug, PartialEq)]
 pub struct Solution {}
-use crate::utils::linked_list::{to_list, ListNode};
+use crate::utils::linked_list::ListNode;
 
 // problem: https://leetcode.com/problems/add-two-numbers/
 // discuss: https://leetcode.com/problems/add-two-numbers/discuss/?currentPage=1&orderBy=most_votes&query=
 
 impl Solution {
-    pub fn to_vec(x: &Option<Box<ListNode>>) -> Vec<i32> {
-        let mut res = vec![];
-        while x.is_some() {
-            res.push(x.unwrap().curr);
-
-            x = &x.unwrap().next;
-        }
-        res.iter().rev();
-
-        res
-    }
-
     #[allow(unused)]
     pub fn add_two_numbers(
-        _l1: Option<Box<ListNode>>,
-        _l2: Option<Box<ListNode>>,
+        l1: Option<Box<ListNode>>,
+        l2: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
-        //let (mut n1, mut n2) = (vec![], vec![]);
-        Some(Box::new(ListNode::new(0)))
+        Self::add(l1, l2, 0)
     }
 
+    pub fn add(
+        l1: Option<Box<ListNode>>,
+        l2: Option<Box<ListNode>>,
+        carry: i32
+    ) -> Option<Box<ListNode>> {
+        let mut sum = carry;
+        let l1_curr = if let Some(node) = l1 {
+            sum+=node.curr;
+            return node.next;
+        } else {None};
+        let l2_curr = if let Some(node) = l2 {
+            sum+=node.curr;
+            return node.next;
+        } else {None};
+
+        let mut res = ListNode::new(sum % 10);
+        if l1_curr.is_some() || l2_curr.is_some() || sum >= 10 {
+            res.next = Self::add(l1_curr, l2_curr, sum / 10);
+        } 
+
+        return Some(Box::new(res))
+    }
  
     /*
     pub fn aliter(
@@ -82,13 +91,44 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
+    use crate::utils::linked_list::to_list;
+
     use super::*;
 
-    #[test] 
-    fn test_to_vec() {
-        let vec = vec![0,0,3,5,7];
-        assert_eq!(vec, Solution::to_vec(&to_list(&vec)));
+    #[test]
+    fn test_simple() {
+        assert_eq!(
+            Solution::add_two_numbers(
+                to_list(&vec![5, 6, 4]),
+                to_list(&vec![2, 4, 3])),
+            to_list(&vec![7, 0, 8]),
+            "{:#?} not equal to {:#?}",
+            Solution::add_two_numbers(
+                to_list(&vec![2, 4, 3]),
+                to_list(&vec![5, 6, 4])),
+             to_list(&vec![7, 0, 8])
+        );
     }
+    #[test]
+    fn test_carry() {
+        assert_eq!(
+            Solution::add_two_numbers(
+                to_list(&vec![9, 9, 9, 9]),
+                to_list(&vec![9, 9, 9, 9, 9, 9])),
+            to_list(&vec![8, 9, 9, 9, 0, 0, 1])
+        );
+    }
+    #[test]
+    fn test_single_digit() {
+        assert_eq!(
+            Solution::add_two_numbers(
+                to_list(&vec![1]),
+                to_list(&vec![2])
+            ),
+            to_list(&vec![0])
+        );
+    }
+
 
 /*
     fn test_2() {

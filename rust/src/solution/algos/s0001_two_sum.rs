@@ -34,4 +34,27 @@ impl Solution {
         }
             vec![]
 }
+
+    #[allow(unused)]
+    pub fn aliter(arr: Vec<i32>, target: i32) -> Vec<i32> {
+        for (i, x) in arr.iter().enumerate() {
+            let i = i as i32;
+            if let Some(idx) = arr.iter().position(|&r| r == target-x) {
+                return vec![i, idx as i32];
+            }
+        }
+        vec![]
+    }
+}
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_simple() {
+        let nums =  vec![2, 7, 11, 15];
+        let target = 9;
+        assert_eq!(Solution::two_sum(nums, target), vec![0, 1]);
+    }
 }
