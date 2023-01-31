@@ -18,7 +18,7 @@ jobs:
 
     # working-directory: ./ts
     steps:
-      - run: cd ./ts
+      - run: cd ts
 
       - name: Checkout Code
         uses: actions/checkout@v3
