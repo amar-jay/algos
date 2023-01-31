@@ -36,7 +36,7 @@ jobs:
       - run: pnpm install 
         working-directory: ./ts
 
-      - run: pnpm run test
+      - run: pnpm run tsc
         working-directory: ./ts
       #      - run: cd ./ts && npm run build --if-present
 

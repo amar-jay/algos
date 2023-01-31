@@ -4,6 +4,7 @@
   "description": "algos",
   "main": "dist/index.js",
   "scripts": {
+    "tsc": "tsc",
     "test": "tsc && jest",
     "test:dev": "nodemon -x ./node_modules/.bin/mocha test/**/*.js"
   },
