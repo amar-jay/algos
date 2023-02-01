@@ -6,6 +6,7 @@ substring
  consisting of non-space characters only.
 */
 
+#![allow(unused)]
 pub fn length_of_last_word(s: &str) -> i32 {
     if let Some(x) = s.trim().split(' ').last() {
         return x.len() as i32;

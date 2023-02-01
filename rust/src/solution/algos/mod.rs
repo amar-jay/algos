@@ -6,6 +6,9 @@ mod s0003_three_sums;
 //mod s0006_spiral_matrix;
 mod s0007_longest_common_prefix;
 mod s0008_3sum_closest;
+mod s0009_atoi;
+mod s0010_is_palidrome;
+mod s0011_regex;
 
 
 mod d0001_dna_to_rna_conversion;

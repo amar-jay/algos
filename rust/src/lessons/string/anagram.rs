@@ -1,3 +1,4 @@
+#![allow(unused)]
 pub fn is_anagram(s: &str, t: &str) -> bool {
     let mut s:Vec<char> = s.to_lowercase().chars().collect();
     let mut t:Vec<char> = t.to_lowercase().chars().collect();
