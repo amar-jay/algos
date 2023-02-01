@@ -9,6 +9,10 @@ mod s0008_3sum_closest;
 mod s0009_atoi;
 mod s0010_is_palidrome;
 mod s0011_regex;
+mod s0012_container_with_most_water;
+mod s0013_roman_to_integer;
+mod s0014_letter_combination_phone_number;
+mod s0018_4sums;
 
 
 mod d0001_dna_to_rna_conversion;
