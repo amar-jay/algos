@@ -13,6 +13,18 @@ impl ListNode {
     pub fn new(val:i32) -> ListNode {
         ListNode { curr: val, next: None}
     }
+    // list node to vec
+    pub fn to_vec(&self) -> Vec<i32> {
+        let mut v = Vec::new();
+        v.push(self.curr);
+        
+        let mut curr = self.next.as_ref();
+        while let Some(node) = curr {
+            v.push(node.curr);
+            curr = node.next.as_ref();
+        }
+        v
+    }
     
 }
 
