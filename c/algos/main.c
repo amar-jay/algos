@@ -8,11 +8,11 @@
 #include "07_soru.c"
 #include "08_soru.c"
 #include "09_soru.c"
-#include "10_soru.c"
-#include "11_soru.c"
-#include "12_soru.c"
-#include "13_soru.c"
-#include "14_soru.c"
+#include "010_soru.c"
+#include "011_soru.c"
+#include "012_soru.c"
+#include "013_soru.c"
+#include "014_soru.c"
 #include "015_string_ends_with.c"
 //#include "016_generate_random_number.c"
 #include "017_generate_random_numbers_loop.c"
@@ -42,7 +42,7 @@ int main()
 	//	return soru_017();
 	//	return soru_018();
 	//	return soru_019();
-  int arr[] = {-1, 3, 4,5,9};
+//	int arr[] = {-1, 3, 4,5,9};
 	//	linear_search(arr, 5, 0);
 	//	binary_search(arr, 0, 5, 5);
   return 0;
