@@ -1,3 +1,8 @@
+// hackerrrank
+mod h0001_grading_students;
+mod h0002_apples_and_oranges;
+
+// codewars
 mod s0001_two_sum;
 mod s0002_longest_substring_without_repeating_chars; 
 mod s0003_three_sums;
@@ -17,7 +22,7 @@ mod s0019_remove_nth_node;
 mod s0020_valid_parens;
 mod s0021_merge_two_sorted_lists;
 
-
+// leetcode
 mod d0001_dna_to_rna_conversion;
 mod d0002_set_alarm;
 mod d0003_removing_elements;
