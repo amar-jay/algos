@@ -1,6 +1,5 @@
 /*!
-  Sam's house has an apple tree and an orange tree that yield an abundance of fruit. Using the information given below, determine the number of apples and oranges that land on Sam's house.
-
+Sam's house has an apple tree and an orange tree that yield an abundance of fruit. Using the information given below, determine the number of apples and oranges that land on Sam's house.
 In the diagram below:
 
 The red region denotes the house, where  is the start point, and  is the endpoint. The apple tree is to the left of the house, and the orange tree is to its right.
@@ -9,16 +8,18 @@ When a fruit falls from its tree, it lands  units of distance from its tree of o
   */
 
 /**
- * Complete the 'countApplesAndOranges' function below.
- *
- * The function accepts following parameters:
- *  1. INTEGER s
- *  2. INTEGER t
- *  3. INTEGER a
- *  4. INTEGER b
- *  5. INTEGER_ARRAY apples
- *  6. INTEGER_ARRAY oranges
+  Complete the 'countApplesAndOranges' function below.
+ 
+  The function accepts following parameters:
+- INTEGER s
+- INTEGER t
+- INTEGER a
+- INTEGER b
+- INTEGER-ARRAY apples
+- INTEGER-ARRAY oranges
+
  */
+#[allow(unused)]
 fn count_apples_and_oranges(s: i32, t: i32, a: i32, b: i32, apples: &[i32], oranges: &[i32]) {
     let apples = apples.iter()
         .map(|&apple| apple + a)

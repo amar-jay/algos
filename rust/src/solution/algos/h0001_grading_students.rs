@@ -16,6 +16,7 @@ If the value of  is less than , no rounding occurs as the result will still be a
  * The function is expected to return an INTEGER_ARRAY.
  * The function accepts INTEGER_ARRAY grades as parameter.
  */
+#[allow(unused)]
 pub fn grading_students(grades: &[i32]) -> Vec<i32> {
     return grades.iter().map(|&grade| {
         if grade < 40 {

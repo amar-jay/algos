@@ -7,6 +7,14 @@ pub struct ListNode
 
 }
 
+impl Copy for ListNode {
+    fn copy(&self) -> Self {
+        Self {
+            curr: self.curr,
+            next: self.next,
+        }
+    }
+}
 //impl <T>std::cmp::PartialEq for ListNode<T> {}
 impl ListNode {
     #[allow(unused)]

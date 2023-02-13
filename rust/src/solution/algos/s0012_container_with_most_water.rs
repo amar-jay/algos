@@ -10,6 +10,7 @@ Notice that you may not slant the container.
 #[allow(unused)]
 pub struct Solution {}
 impl Solution {
+    #[allow(unused)]
     pub fn max_area(height: Vec<i32>) -> i32 {
         let mut max = 0;
         let mut i = 0;

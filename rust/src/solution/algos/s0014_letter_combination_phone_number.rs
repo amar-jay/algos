@@ -2,6 +2,7 @@
 #[allow(unused)]
 pub struct Solution {}
 impl Solution {
+    #[allow(unused)]
     fn combs(c: u32) -> Vec<char> {
         match c {
             2 => vec!['a', 'b', 'c'],

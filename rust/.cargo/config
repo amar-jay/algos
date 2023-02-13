@@ -1,2 +1,0 @@
-[build]
-rustflag = ["-A", "ununsed", "non_snake_case"]

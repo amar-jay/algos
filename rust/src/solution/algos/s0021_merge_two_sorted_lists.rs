@@ -11,39 +11,31 @@ Output: [1,1,2,3,4,4]
   */
 use crate::utils::linked_list::ListNode;
 
-#[allow(unused)]
 pub struct Solution {}
 
 impl Solution {
-    #[allow(unused)]
     pub fn merge_two_lists(list1: Option<Box<ListNode>>, list2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-        let mut head = Some(Box::new(ListNode::new(0)));
-        let mut tail = &mut head;
-        let mut l1 = list1;
-        let mut l2 = list2;
-        while l1.is_some() && l2.is_some() {
-            let mut node = None;
-            if l1.as_ref().unwrap().curr < l2.as_ref().unwrap().curr {
-                node = l1.take();
-                l1 = node.as_mut().unwrap().next;
+        let mut ans_head = ListNode::new(0);
+        let mut ans = &mut ans_head.next.unwrap();
+
+        let (mut l1_head, mut l1_tail) = (list1, list1);
+        let (mut l2_head, mut l2_tail) = (list2, list2);
+
+        let curr = i32::MAX;
+        while l1_tail.is_some() && l2_tail.is_some() {
+            if l1_tail.unwrap().curr < l2_tail.unwrap().curr {
+                ans.curr = l1_tail.unwrap().curr;
+                l1_tail = l1_tail.unwrap().next;
             } else {
-                node = l2.take();
-                l2 = node.as_mut().unwrap().next;
+                ans.curr = l2_tail.unwrap().curr;
+                l2_tail = l2_tail.unwrap().next;
             }
-            tail.as_mut().unwrap().next = node;
-            tail = &mut tail.as_mut().unwrap().next;
+
         }
-        if l1.is_some() {
-            tail.as_mut().unwrap().next = l1;
-        }
-        if l2.is_some() {
-            tail.as_mut().unwrap().next = l2;
-        }
-        head.unwrap().next
-        
+
+        return ans_head.next;
     }
 }
-
 
 #[cfg(test)]
 mod tests {

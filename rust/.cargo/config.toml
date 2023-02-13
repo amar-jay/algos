@@ -1,0 +1,8 @@
+[alias]  # command aliases
+t = "test"
+
+[test]
+rustflags = ["-A dead_code"]
+
+[doc]
+browser = "brave"
