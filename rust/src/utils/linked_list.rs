@@ -11,7 +11,7 @@ impl Copy for ListNode {
     fn copy(&self) -> Self {
         Self {
             curr: self.curr,
-            next: self.next,
+            next: self.next.unwrap().copy(),
         }
     }
 }

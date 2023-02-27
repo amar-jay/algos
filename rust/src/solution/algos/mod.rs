@@ -6,7 +6,7 @@ mod h0002_apples_and_oranges;
 mod s0001_two_sum;
 mod s0002_longest_substring_without_repeating_chars; 
 mod s0003_three_sums;
-//mod s0004_add_two_numbers;
+mod s0004_add_two_numbers;
 //mod s0005_integer_to_roman;
 //mod s0006_spiral_matrix;
 mod s0007_longest_common_prefix;
