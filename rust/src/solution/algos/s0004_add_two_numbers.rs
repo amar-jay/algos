@@ -1,3 +1,5 @@
+use std::borrow::BorrowMut;
+
 /**
  * [2] Add Two Numbers
  *
@@ -31,108 +33,89 @@ impl Solution {
         l2: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
         let mut ans = Box::new(ListNode::default());
-        let list1 = &l1;
-        let list2 = &l2;
+        let mut list1 = &l1;
+        let mut list2 = &l2;
         let mut tail = &mut ans;
         let mut carry = 0;
 
         while list1.is_some() || list2.is_some() {
+            tail.next = Some(Box::new(ListNode::default()));
+            tail = tail.next.as_mut()?;
             match (list1, list2) {
                 (Some(l1), Some(l2)) => {
                     let sum = l1.val + l2.val + carry;
                     tail.val = sum % 10;
                     carry = sum / 10;
+                    list1 = &list1.as_ref().unwrap().next;
+                    list2 = &list2.as_ref().unwrap().next;
                 },
                 (Some(l1), None) => {
-                    tail.val = l1.val + carry;
-                    carry = 0;
+                    let sum = l1.val + carry;
+                    tail.val = sum % 10;
+                    carry = sum / 10;
+                    list1 = &list1.as_ref().unwrap().next;
                 },
                 (None, Some(l2)) => {
-                    tail.val = l2.val + carry;
-                    carry = 0;
+                    let sum = l2.val + carry;
+                    tail.val = sum % 10;
+                    carry = sum / 10;
+                    list2 = &list2.as_ref().unwrap().next;
                 },
                 (None, None) => {
                     break;
                 },
             }
-            tail.next = Some(Box::new(ListNode::default()));
-            tail = tail.next.as_mut().unwrap();
         }
 
-        Some(ans)
+        if carry > 0 {
+            tail.next = Some(Box::new(ListNode::new(carry)));
+        } 
+
+        ans.next
     }
  
-    /*
-    pub fn aliter(
-        l1: Option<Box<ListNode>>,
-        l2: Option<Box<ListNode>>,
-    ) -> Option<Box<ListNode>> {
-        let (mut l1, mut l2) = (l1, l2);
-        let (mut n1, mut n2) = (0, 0);
-
-        while let Some(l) = l1 {
-            n1 = l1.val;
-
-        }
-
-    }
-
-    pub fn solution(
-        l1: Option<Box<ListNode>>,
-        l2: Option<Box<ListNode>>,
-    ) -> Option<Box<ListNode>> {
-        let (mut l1, mut l2) = (l1, l2);
-        let (mut n1, mut n2) = (0, 0);
-
-        while let Some(l) = l1 {
-            n1 = l1.val;
-
-        }
-
-    }
-    */
 }
 
 
 #[cfg(test)]
 mod tests {
-    // use crate::lessons::linked_list::*;
+    use crate::lessons::linked_list::*;
 
-    // use super::*;
+    use super::*;
 
-    // #[test]
-    // fn test_simple() {
-    //     assert_eq!(
-    //         Solution::addTwoNumbers(
-    //             to_list(&vec![5, 6, 4]),
-    //             to_list(&vec![2, 4, 3])),
-    //         to_list(&vec![7, 0, 8]),
-    //         "{:#?} not equal to {:#?}",
-    //         Solution::addTwoNumbers(
-    //             to_list(&vec![2, 4, 3]),
-    //             to_list(&vec![5, 6, 4])),
-    //          to_list(&vec![7, 0, 8])
-    //     );
-    // }
-    // #[test]
-    // fn test_carry() {
-    //     assert_eq!(
-    //         Solution::addTwoNumbers(
-    //             to_list(&vec![9, 9, 9, 9]),
-    //             to_list(&vec![9, 9, 9, 9, 9, 9])),
-    //         to_list(&vec![8, 9, 9, 9, 0, 0, 1])
-    //     );
-    // }
-    // #[test]
-    // fn test_single_digit() {
-    //     assert_eq!(
-    //         Solution::addTwoNumbers(
-    //             to_list(&vec![1]),
-    //             to_list(&vec![2])
-    //         ),
-    //         to_list(&vec![0])
-    //     );
-    // }
+    #[test]
+    fn test_simple() {
+        assert_eq!(
+            Solution::addTwoNumbers(
+                to_list(&vec![5, 6, 4]),
+                to_list(&vec![2, 4, 3])),
+            to_list(&vec![7, 0, 8]),
+            "{:#?} not equal to {:#?}",
+            Solution::addTwoNumbers(
+                to_list(&vec![2, 4, 3]),
+                to_list(&vec![5, 6, 4])),
+             to_list(&vec![7, 0, 8])
+        );
+    }
+    #[test]
+    fn test_carry() {
+        assert_eq!(
+            Solution::addTwoNumbers(
+                to_list(&vec![9, 9, 9, 9]),
+                to_list(&vec![9, 9, 9, 9, 9, 9])).unwrap().to_vec(),
+            vec![8, 9, 9, 9, 0, 0, 1]
+        );
+    }
+    #[test]
+    fn test_single_digit() {
+        assert_eq!(
+            Solution::addTwoNumbers(
+                to_list(&vec![1]),
+                to_list(&vec![2])
+            ),
+            to_list(&vec![3])
+        );
+    }
 
 
 }

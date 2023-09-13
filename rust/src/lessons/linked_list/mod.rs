@@ -13,6 +13,7 @@ impl ListNode {
     }
 
     // list node to vec
+    #[inline]
     pub fn to_vec(&self) -> Vec<i32> {
         let mut v = Vec::new();
         v.push(self.val);
