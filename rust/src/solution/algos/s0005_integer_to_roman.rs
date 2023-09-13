@@ -59,8 +59,7 @@
  * Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
  *
  */
-pub struct Solution {}
-
+use crate::solution::algos::Solution;
 
 impl Solution {
     fn table() -> Vec<(i32, &'static str)> {

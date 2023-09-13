@@ -19,8 +19,7 @@ Output: [1]
 */
 use crate::lessons::linked_list::ListNode;
 #[allow(unused)]
-pub struct Solution {}
-
+use crate::solution::algos::Solution;
 impl Solution {
     pub fn remove_nth_from_end(head: Option<Box<ListNode>>, n: i32) -> Option<Box<ListNode>> {
         let mut head = head;

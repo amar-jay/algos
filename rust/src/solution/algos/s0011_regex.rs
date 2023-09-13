@@ -34,7 +34,7 @@ p contains only lowercase English letters, '.', and '*'.
 It is guaranteed for each appearance of the character '*', there will be a previous valid character to match.
 */
 #[allow(unused)]
-pub struct Solution {}
+use crate::solution::algos::Solution;
 
 impl Solution {
     pub fn is_match(s: String, p: String) -> bool {

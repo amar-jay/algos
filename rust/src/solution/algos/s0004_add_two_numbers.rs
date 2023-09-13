@@ -17,10 +17,9 @@
  *
  */
 
-#[derive(Debug, PartialEq)]
-pub struct Solution {}
 use crate::lessons::linked_list::ListNode;
 
+use crate::solution::algos::Solution;
 
 // problem: https://leetcode.com/problems/add-two-numbers/
 // discuss: https://leetcode.com/problems/add-two-numbers/discuss/?valentPage=1&orderBy=most_votes&query=
@@ -39,19 +38,19 @@ impl Solution {
         l2: Option<Box<ListNode>>,
         carry: i32
     ) -> Option<Box<ListNode>> {
-        let mut sum = carry;
+        let mut _sum = carry;
         let l1_val = if let Some(node) = l1 {
-            sum+=node.val;
+            _sum+=node.val;
             return node.next;
         } else {None};
         let l2_val = if let Some(node) = l2 {
-            sum+=node.val;
+            _sum+=node.val;
             return node.next;
         } else {None};
 
-        let mut res = ListNode::new(sum % 10);
-        if l1_val.is_some() || l2_val.is_some() || sum >= 10 {
-            res.next = Self::add(l1_val, l2_val, sum / 10);
+        let mut res = ListNode::new(_sum % 10);
+        if l1_val.is_some() || l2_val.is_some() || _sum >= 10 {
+            res.next = Self::add(l1_val, l2_val, _sum / 10);
         } 
 
         return Some(Box::new(res))

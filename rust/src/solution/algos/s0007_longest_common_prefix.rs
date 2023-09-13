@@ -1,5 +1,5 @@
 
-pub struct Solution{}
+use crate::solution::algos::Solution;
 impl Solution {
     #[allow(unused)]
     pub fn solution_1(strs: Vec<String>) -> String {

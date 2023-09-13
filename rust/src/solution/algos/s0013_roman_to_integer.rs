@@ -1,6 +1,6 @@
 
 #[allow(unused)]
-pub struct Solution {}
+use crate::solution::algos::Solution;
 impl Solution {
     fn convert(x: char) -> i32 {
         match x {

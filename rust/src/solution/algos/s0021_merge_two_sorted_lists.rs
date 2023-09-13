@@ -11,21 +11,19 @@ Output: [1,1,2,3,4,4]
   */
 use crate::lessons::linked_list::*;
 
-pub struct Solution {}
+use crate::solution::algos::Solution;
 
 impl Solution {
     pub fn merge_two_lists(list1: Option<Box<ListNode>>, list2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-        let mut list1 = list1;
         let mut list2 = list2;
-        let head = &mut list1;
+        let mut list1 = list1;
+        let mut head = &mut list1;
         while list2.is_some() {
-            if list1.is_none() || list1.as_ref()?.val > list2.as_ref()?.val {
+            if head.is_none() || list2.as_ref()?.val < head.as_ref()?.val {
                 std::mem::swap(head, &mut list2);
             }
-
             head = &mut head.as_mut()?.next;
-        }
-
+        }  
         list1
     }
 }

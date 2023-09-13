@@ -18,7 +18,7 @@ use std::collections::HashMap;
  *
  */
 #[allow(unused)]
-pub struct Solution {}
+use crate::solution::algos::Solution;
 
 impl Solution {
     #[allow(unused)]

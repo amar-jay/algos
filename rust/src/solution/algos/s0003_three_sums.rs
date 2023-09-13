@@ -23,8 +23,8 @@ use std::collections::HashMap;
  *
  *
  */
-pub struct Solution {}
 
+use crate::solution::algos::Solution;
 // problem: https://leetcode.com/problems/3sum/
 // discuss: https://leetcode.com/problems/3sum/discuss/?currentPage=1&orderBy=most_votes&query=
 
@@ -32,7 +32,7 @@ pub struct Solution {}
 
 impl Solution {
     #[allow(dead_code)]
-    pub fn solution_2(nums: Vec<i32>) -> Vec<Vec<i32>> {
+    fn three_sums_2(nums: Vec<i32>) -> Vec<Vec<i32>> {
         let mut combs:HashMap<i32,i32> = HashMap::new();
         let mut nums = nums;
         if nums.len() < 3 {
@@ -62,7 +62,7 @@ impl Solution {
     }
 
     #[allow(dead_code)]
-    pub fn solution_1(nums: Vec<i32>) -> Vec<Vec<i32>> {
+    fn three_sums_1(nums: Vec<i32>) -> Vec<Vec<i32>> {
         let mut map:HashMap<i32,[usize; 2]> = HashMap::new();
         let mut ans = vec![];
          if nums.len() < 3 {
@@ -94,7 +94,7 @@ impl Solution {
         ans }
 
     #[allow(dead_code)]
-    pub fn solution_3(nums: Vec<i32>) -> Vec<Vec<i32>> {
+    fn three_sums_3(nums: Vec<i32>) -> Vec<Vec<i32>> {
         let mut nums = nums;
         let mut res = Vec::new();
         nums.sort();
@@ -128,7 +128,7 @@ impl Solution {
     }
     #[allow(dead_code)]
     pub fn three_sum(nums: Vec<i32>) -> Vec<Vec<i32>> {
-        Self::solution_3(nums)
+        Self::three_sums_3(nums)
     }
 
 }

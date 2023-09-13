@@ -7,7 +7,7 @@ nums[a] + nums[b] + nums[c] + nums[d] == target
 You may return the answer in any order.
 */
 #[allow(unused)]
-pub struct Solution {}
+use crate::solution::algos::Solution;
 
 impl Solution {
     #[allow(unused)]

@@ -8,7 +8,7 @@ Return the maximum amount of water a container can store.
 Notice that you may not slant the container.
 */
 #[allow(unused)]
-pub struct Solution {}
+use crate::solution::algos::Solution;
 impl Solution {
     #[allow(unused)]
     pub fn max_area(height: Vec<i32>) -> i32 {

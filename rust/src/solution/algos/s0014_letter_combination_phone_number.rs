@@ -1,6 +1,6 @@
 
 #[allow(unused)]
-pub struct Solution {}
+use crate::solution::algos::Solution;
 impl Solution {
     #[allow(unused)]
     fn combs(c: u32) -> Vec<char> {

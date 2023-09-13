@@ -22,6 +22,7 @@ mod s0019_remove_nth_node;
 mod s0020_valid_parens;
 mod s0021_merge_two_sorted_lists;
 mod s0022_generate_parens;
+mod s_other;
 
 // leetcode
 mod d0001_dna_to_rna_conversion;
@@ -55,6 +56,7 @@ mod d0024_how_many_numbers_III;
 mod d0026_infix_postfix_converter;
 mod d0027_primes_with_even_digits;
 
+pub enum Solution{}
 pub fn run() {
     // for debugging
     //d0018_best_travel::run();

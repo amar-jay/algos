@@ -5,8 +5,7 @@ Return the sum of the three integers.
 You may assume that each input would have exactly one solution.
 *
 */
-#[allow(unused)]
-pub struct Solution {}
+use crate::solution::algos::Solution;
 impl Solution {
     #[allow(unused)]
     pub fn three_sum_closest(nums: Vec<i32>, target: i32) -> i32 {
