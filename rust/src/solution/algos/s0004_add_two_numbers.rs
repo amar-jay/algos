@@ -25,35 +25,41 @@ use crate::solution::algos::Solution;
 // discuss: https://leetcode.com/problems/add-two-numbers/discuss/?valentPage=1&orderBy=most_votes&query=
 
 impl Solution {
-    #[allow(unused)]
-    pub fn add_two_numbers(
+    #[allow(non_snake_case, dead_code)]
+    pub fn addTwoNumbers(
         l1: Option<Box<ListNode>>,
         l2: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
-        Self::add(l1, l2, 0)
-    }
+        let mut ans = Box::new(ListNode::default());
+        let list1 = &l1;
+        let list2 = &l2;
+        let mut tail = &mut ans;
+        let mut carry = 0;
 
-    pub fn add(
-        l1: Option<Box<ListNode>>,
-        l2: Option<Box<ListNode>>,
-        carry: i32
-    ) -> Option<Box<ListNode>> {
-        let mut _sum = carry;
-        let l1_val = if let Some(node) = l1 {
-            _sum+=node.val;
-            return node.next;
-        } else {None};
-        let l2_val = if let Some(node) = l2 {
-            _sum+=node.val;
-            return node.next;
-        } else {None};
+        while list1.is_some() || list2.is_some() {
+            match (list1, list2) {
+                (Some(l1), Some(l2)) => {
+                    let sum = l1.val + l2.val + carry;
+                    tail.val = sum % 10;
+                    carry = sum / 10;
+                },
+                (Some(l1), None) => {
+                    tail.val = l1.val + carry;
+                    carry = 0;
+                },
+                (None, Some(l2)) => {
+                    tail.val = l2.val + carry;
+                    carry = 0;
+                },
+                (None, None) => {
+                    break;
+                },
+            }
+            tail.next = Some(Box::new(ListNode::default()));
+            tail = tail.next.as_mut().unwrap();
+        }
 
-        let mut res = ListNode::new(_sum % 10);
-        if l1_val.is_some() || l2_val.is_some() || _sum >= 10 {
-            res.next = Self::add(l1_val, l2_val, _sum / 10);
-        } 
-
-        return Some(Box::new(res))
+        Some(ans)
     }
  
     /*
@@ -87,7 +93,6 @@ impl Solution {
     */
 }
 
-// submission codes end
 
 #[cfg(test)]
 mod tests {
@@ -98,12 +103,12 @@ mod tests {
     // #[test]
     // fn test_simple() {
     //     assert_eq!(
-    //         Solution::add_two_numbers(
+    //         Solution::addTwoNumbers(
     //             to_list(&vec![5, 6, 4]),
     //             to_list(&vec![2, 4, 3])),
     //         to_list(&vec![7, 0, 8]),
     //         "{:#?} not equal to {:#?}",
-    //         Solution::add_two_numbers(
+    //         Solution::addTwoNumbers(
     //             to_list(&vec![2, 4, 3]),
     //             to_list(&vec![5, 6, 4])),
     //          to_list(&vec![7, 0, 8])
@@ -112,7 +117,7 @@ mod tests {
     // #[test]
     // fn test_carry() {
     //     assert_eq!(
-    //         Solution::add_two_numbers(
+    //         Solution::addTwoNumbers(
     //             to_list(&vec![9, 9, 9, 9]),
     //             to_list(&vec![9, 9, 9, 9, 9, 9])),
     //         to_list(&vec![8, 9, 9, 9, 0, 0, 1])
@@ -121,7 +126,7 @@ mod tests {
     // #[test]
     // fn test_single_digit() {
     //     assert_eq!(
-    //         Solution::add_two_numbers(
+    //         Solution::addTwoNumbers(
     //             to_list(&vec![1]),
     //             to_list(&vec![2])
     //         ),
@@ -130,22 +135,4 @@ mod tests {
     // }
 
 
-/*
-    fn test_2() {
-        assert_eq!(
-            Solution::add_two_numbers(to_list(vec![2, 4, 3]), to_list(vec![5, 6, 4])),
-            to_list(vec![7, 0, 8])
-        );
-
-        assert_eq!(
-            Solution::add_two_numbers(to_list(vec![9, 9, 9, 9]), to_list(vec![9, 9, 9, 9, 9, 9])),
-            to_list(vec![8, 9, 9, 9, 0, 0, 1])
-        );
-
-        assert_eq!(
-            Solution::add_two_numbers(to_list(vec![0]), to_list(vec![0])),
-            to_list(vec![0])
-        )
-    }
-    */
 }

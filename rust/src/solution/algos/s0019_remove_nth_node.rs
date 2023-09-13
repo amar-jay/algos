@@ -17,8 +17,8 @@ Input: head = [1,2], n = 1
 Output: [1]
 ```
 */
+#![allow(dead_code)]
 use crate::lessons::linked_list::ListNode;
-#[allow(unused)]
 use crate::solution::algos::Solution;
 impl Solution {
     pub fn remove_nth_from_end(head: Option<Box<ListNode>>, n: i32) -> Option<Box<ListNode>> {

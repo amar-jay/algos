@@ -14,6 +14,7 @@ use crate::lessons::linked_list::*;
 use crate::solution::algos::Solution;
 
 impl Solution {
+    #[allow(dead_code)]
     pub fn merge_two_lists(list1: Option<Box<ListNode>>, list2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         let mut list2 = list2;
         let mut list1 = list1;

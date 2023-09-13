@@ -37,6 +37,7 @@ It is guaranteed for each appearance of the character '*', there will be a previ
 use crate::solution::algos::Solution;
 
 impl Solution {
+    #[allow(dead_code)]
     pub fn is_match(s: String, p: String) -> bool {
         let s = s.as_bytes();
         let p = p.as_bytes();

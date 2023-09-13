@@ -1,8 +1,7 @@
 
-#[allow(unused)]
+#![allow(dead_code)]
 use crate::solution::algos::Solution;
 impl Solution {
-    #[allow(unused)]
     fn combs(c: u32) -> Vec<char> {
         match c {
             2 => vec!['a', 'b', 'c'],

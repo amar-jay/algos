@@ -6,14 +6,15 @@ authors = ["amar-jay <abdelmanan.abdelrahman03@gmail.com>"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+# num-traits = { version = "0.2", optional = true }
+# num-bigint = { version = "0.4", optional = true }
+
 [dependencies]
-num-traits = { version = "0.2", optional = true }
-num-bigint = { version = "0.4", optional = true }
 regex = '1'
 lazy_static = '1.4.0'
 rand = '0.8.4'
 chrono = '0.4.22'
 
-[features]
-default = ["big-math"]
-big-math = ["dep:num-bigint", "dep:num-traits"]
+# [features]
+# default = ["big-math"]
+# big-math = ["dep:num-bigint", "dep:num-traits"]
