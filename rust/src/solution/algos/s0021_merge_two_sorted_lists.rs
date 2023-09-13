@@ -9,38 +9,31 @@ Return the head of the merged linked list.
 Input: list1 = [1,2,4], list2 = [1,3,4]
 Output: [1,1,2,3,4,4]
   */
-use crate::utils::linked_list::ListNode;
+use crate::lessons::linked_list::*;
 
 pub struct Solution {}
 
 impl Solution {
     pub fn merge_two_lists(list1: Option<Box<ListNode>>, list2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-        let mut ans_head = ListNode::new(0);
-        let mut ans = &mut ans_head.next.unwrap();
-
-        let (mut l1_head, mut l1_tail) = (list1, list1);
-        let (mut l2_head, mut l2_tail) = (list2, list2);
-
-        let curr = i32::MAX;
-        while l1_tail.is_some() && l2_tail.is_some() {
-            if l1_tail.unwrap().curr < l2_tail.unwrap().curr {
-                ans.curr = l1_tail.unwrap().curr;
-                l1_tail = l1_tail.unwrap().next;
-            } else {
-                ans.curr = l2_tail.unwrap().curr;
-                l2_tail = l2_tail.unwrap().next;
+        let mut list1 = list1;
+        let mut list2 = list2;
+        let head = &mut list1;
+        while list2.is_some() {
+            if list1.is_none() || list1.as_ref()?.val > list2.as_ref()?.val {
+                std::mem::swap(head, &mut list2);
             }
 
+            head = &mut head.as_mut()?.next;
         }
 
-        return ans_head.next;
+        list1
     }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::utils::linked_list::to_list;
+    use crate::lessons::linked_list::to_list;
     #[test]
     fn test() {
         assert_eq!(Solution::merge_two_lists(None, None), None);

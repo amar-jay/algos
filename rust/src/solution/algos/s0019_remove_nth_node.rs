@@ -17,7 +17,7 @@ Input: head = [1,2], n = 1
 Output: [1]
 ```
 */
-use crate::utils::linked_list::ListNode;
+use crate::lessons::linked_list::ListNode;
 #[allow(unused)]
 pub struct Solution {}
 
@@ -56,7 +56,7 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::Solution;
-    use crate::utils::linked_list::to_list;
+    use crate::lessons::linked_list::*;
     
 //    const ERR_MSG: &str = "\nYour result (left) did not match the expected output (right)";
     

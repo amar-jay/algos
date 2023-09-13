@@ -5,8 +5,8 @@ mod interface;
 mod selecting;
 mod string;
 mod design_patterns;
-mod linked_list;
+pub mod linked_list;
 
-fn main() {
+pub fn run() {
     println!("Running lessons");
 }

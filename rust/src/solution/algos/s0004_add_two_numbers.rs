@@ -19,10 +19,11 @@
 
 #[derive(Debug, PartialEq)]
 pub struct Solution {}
-use crate::utils::linked_list::ListNode;
+use crate::lessons::linked_list::ListNode;
+
 
 // problem: https://leetcode.com/problems/add-two-numbers/
-// discuss: https://leetcode.com/problems/add-two-numbers/discuss/?currentPage=1&orderBy=most_votes&query=
+// discuss: https://leetcode.com/problems/add-two-numbers/discuss/?valentPage=1&orderBy=most_votes&query=
 
 impl Solution {
     #[allow(unused)]
@@ -39,18 +40,18 @@ impl Solution {
         carry: i32
     ) -> Option<Box<ListNode>> {
         let mut sum = carry;
-        let l1_curr = if let Some(node) = l1 {
-            sum+=node.curr;
+        let l1_val = if let Some(node) = l1 {
+            sum+=node.val;
             return node.next;
         } else {None};
-        let l2_curr = if let Some(node) = l2 {
-            sum+=node.curr;
+        let l2_val = if let Some(node) = l2 {
+            sum+=node.val;
             return node.next;
         } else {None};
 
         let mut res = ListNode::new(sum % 10);
-        if l1_curr.is_some() || l2_curr.is_some() || sum >= 10 {
-            res.next = Self::add(l1_curr, l2_curr, sum / 10);
+        if l1_val.is_some() || l2_val.is_some() || sum >= 10 {
+            res.next = Self::add(l1_val, l2_val, sum / 10);
         } 
 
         return Some(Box::new(res))
@@ -65,7 +66,7 @@ impl Solution {
         let (mut n1, mut n2) = (0, 0);
 
         while let Some(l) = l1 {
-            n1 = l1.curr;
+            n1 = l1.val;
 
         }
 
@@ -79,7 +80,7 @@ impl Solution {
         let (mut n1, mut n2) = (0, 0);
 
         while let Some(l) = l1 {
-            n1 = l1.curr;
+            n1 = l1.val;
 
         }
 
@@ -91,7 +92,7 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-    use crate::utils::linked_list::to_list;
+    use crate::lessons::linked_list::*;
 
     use super::*;
 
