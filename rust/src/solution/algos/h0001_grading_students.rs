@@ -19,7 +19,7 @@ If the value of  is less than , no rounding occurs as the result will still be a
 #[allow(unused)]
 pub fn grading_students(grades: &[i32]) -> Vec<i32> {
     return grades.iter().map(|&grade| {
-        if grade < 40 {
+        if grade < 35 {
             return grade;
         } else {
             let next_mult_of_5 = (grade / 5 + 1) * 5;
