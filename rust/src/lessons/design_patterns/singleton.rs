@@ -1,3 +1,4 @@
+#![allow(unused)]
 #[derive(Clone)]
 struct Singleton {
     value: i32,
