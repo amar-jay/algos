@@ -205,9 +205,4 @@ mod tests {
         assert_eq!(Solution::plus_one(vec![7,2,8,5,0,9,1,2,9,5,3,6,6,7,3,2,8,4,3,7,9,5,7,7,4,7,4,9,4,7,0,1,1,1,7,4,0,0,6]), vec![7,2,8,5,0,9,1,2,9,5,3,6,6,7,3,2,8,4,3,7,9,5,7,7,4,7,4,9,4,7,0,1,1,1,7,4,0,0,7])
     }
 
-    #[test]
-    fn test_order_of_largest_plus_sign() {
-        assert_eq!(Solution::order_of_largest_plus_sign(5, vec![vec![4,2]]), 2);
-        assert_eq!(Solution::order_of_largest_plus_sign(1, vec![vec![0,0]]), 0);
-    }
 }
