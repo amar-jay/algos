@@ -1,3 +1,5 @@
+#![allow(unused, dead_code)]
+
 #[derive(Debug, Eq, PartialEq, Clone, Default)]
 pub struct ListNode
 {
@@ -13,7 +15,6 @@ impl ListNode {
     }
 
     // list node to vec
-    #[inline]
     pub fn to_vec(&self) -> Vec<i32> {
         let mut v = Vec::new();
         v.push(self.val);
@@ -28,6 +29,7 @@ impl ListNode {
     
 }
 
+/// Convert Vector to ListNode
 pub fn to_list(vec: &Vec<i32>) -> Option<Box<ListNode>> {
 
     let mut prev = None;
@@ -38,4 +40,16 @@ pub fn to_list(vec: &Vec<i32>) -> Option<Box<ListNode>> {
     }
 
     prev
+}
+/// Convert ListNode to Vector
+pub fn to_vec(vec: &ListNode) -> Vec<i32> {
+    let mut v = Vec::new();
+    v.push(vec.val);
+    
+    let mut curr = vec.next.as_ref();
+    while let Some(node) = curr {
+        v.push(node.val);
+        curr = node.next.as_ref();
+    }
+    v
 }

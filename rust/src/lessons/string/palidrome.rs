@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 pub fn is_palidrome(text: &str) -> bool {
     let mut chars = text.chars();
     while let (Some(s1), Some(s2)) = (chars.next(), chars.next_back()) {
