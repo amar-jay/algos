@@ -55,6 +55,7 @@ mod d0024_how_many_numbers_III;
 //mod d0025_evaluate_math_expr;
 mod d0026_infix_postfix_converter;
 mod d0027_primes_with_even_digits;
+mod s0083_remove_duplicate_from_sorted_list;
 
 pub enum Solution{}
 pub fn run() {
